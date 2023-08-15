@@ -1,0 +1,10 @@
+.vertical-toggle-button {
+	-fx-text-fill: -color-light;
+	-fx-font-size: 14px;
+	-fx-background-radius: 0;
+	-fx-border-radius: 0;
+}
+
+.message-pane .text-area {
+	-fx-padding: 0;
+}

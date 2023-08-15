@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+  -->
+<?import io.github.eckig.grapheditor.core.view.GraphEditorContainer?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.entframework.javafx.designer.DesignerTabCtrl">
+    <top>
+        <ToolBar>
+            <padding>
+                <Insets top="4" bottom="4" left="4" right="4" />
+            </padding>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#addNode">
+                <graphic>
+                    <FontIcon iconLiteral="anto-plus-circle"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.add-entity"/>
+                </tooltip>
+            </Button>
+            <Separator orientation="VERTICAL"/>
+            <Button fx:id="btnUndo" styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#undo">
+                <graphic>
+                    <FontIcon iconLiteral="anto-undo"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.undo"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="btnRedo" styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#redo">
+                <graphic>
+                    <FontIcon iconLiteral="anto-redo"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.redo"/>
+                </tooltip>
+            </Button>
+            <Separator orientation="VERTICAL"/>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#copy">
+                <graphic>
+                    <FontIcon iconLiteral="anto-copy"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.copy"/>
+                </tooltip>
+            </Button>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#paste">
+                <graphic>
+                    <FontIcon iconLiteral="mdi2c-content-paste"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.paste"/>
+                </tooltip>
+            </Button>
+            <Separator orientation="VERTICAL"/>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#selectAll">
+                <graphic>
+                    <FontIcon iconLiteral="anto-select"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.select-all"/>
+                </tooltip>
+            </Button>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#clearAll">
+                <graphic>
+                    <FontIcon iconLiteral="mdi2b-book-remove-multiple-outline"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.clear-all"/>
+                </tooltip>
+            </Button>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#deleteSelection">
+                <graphic>
+                    <FontIcon iconLiteral="mdi2b-book-remove-outline"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.clear-selected"/>
+                </tooltip>
+            </Button>
+            <Separator orientation="VERTICAL"/>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5" onAction="#panToCenter">
+                <graphic>
+                    <FontIcon iconLiteral="anto-pic-center"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.pan-to-center"/>
+                </tooltip>
+            </Button>
+            <ToggleButton fx:id="showGridBtn" styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5">
+                <graphic>
+                    <FontIcon iconLiteral="mdi2g-grid-large"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.show-grid"/>
+                </tooltip>
+            </ToggleButton>
+            <ToggleButton fx:id="snapToGridBtn" styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5">
+                <graphic>
+                    <FontIcon iconLiteral="mdi2g-grid"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.snap-to-grid"/>
+                </tooltip>
+            </ToggleButton>
+            <Separator orientation="VERTICAL"/>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#save">
+                <graphic>
+                    <FontIcon iconLiteral="anto-save"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.save"/>
+                </tooltip>
+            </Button>
+            <Button styleClass="action-bar-btn" prefWidth="40" prefHeight="32.5"
+                    onAction="#saveAs">
+                <graphic>
+                    <FontIcon iconLiteral="mdi2c-content-save-all-outline"/>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="%tooltip.save-as"/>
+                </tooltip>
+            </Button>
+        </ToolBar>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.3, 0.8" maxHeight="Infinity" maxWidth="Infinity">
+            <VBox minHeight="0.0" minWidth="0.0" maxWidth="250.0" prefHeight="208.0" prefWidth="173.0">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
+                <TextField fx:id="treeSearchInput" focusTraversable="false" layoutX="6.0" layoutY="14.0" prefHeight="15.0" prefWidth="160.0" />
+                <TreeView focusTraversable="false" fx:id="treeView" maxHeight="Infinity" maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0"
+                          VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets top="5" />
+                    </VBox.margin>
+                </TreeView>
+            </VBox>
+            <AnchorPane fx:id="graphEditorPane" minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="200.0" SplitPane.resizableWithParent="true">
+                <GraphEditorContainer styleClass="graph-editor-container" fx:id="graphEditorContainer" minWidth="0" minHeight="0" maxWidth="-Infinity" maxHeight="-Infinity"
+                                      AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                />
+                <ToggleButton fx:id="minimapButton" onAction="#toggleMinimap" focusTraversable="false" AnchorPane.rightAnchor="12" AnchorPane.topAnchor="4"/>
+            </AnchorPane>
+            <AnchorPane fx:id="propertyPane" minHeight="0.0" minWidth="0.0" maxWidth="380.0" prefWidth="200.0">
+            </AnchorPane>
+        </SplitPane>
+    </center>
+</BorderPane>

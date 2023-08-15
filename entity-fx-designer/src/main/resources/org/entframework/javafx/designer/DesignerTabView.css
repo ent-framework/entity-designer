@@ -1,0 +1,33 @@
+#propertyPane .formsfx-form {
+    -fx-padding:1px 1px 1px 1px;
+}
+
+#graphEditorPane {
+    /*-fx-background-color: #f2223f;*/
+}
+
+#treeSearchInput {
+    -fx-indent: 5px 2px 2px 5px;
+}
+
+#leftPane {
+
+}
+#treeView {
+    -fx-padding:2px 0 0 0;
+}
+
+#treeView .tree-cell {
+    -fx-padding:2px 1px 2px 1px;
+    -fx-indent: 1em;
+}
+
+.action-bar-btn {
+    -fx-background-insets: 0;
+    -fx-indent: 12px;
+    -fx-padding: 0;
+}
+
+.graph-editor-container .graph-editor {
+    -fx-background-color: -color-bg-inset;
+}

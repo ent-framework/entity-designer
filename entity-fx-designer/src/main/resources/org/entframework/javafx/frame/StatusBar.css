@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+ */
+
+.status-bar .text-field {
+   /* -fx-border-radius: 0;*/
+    -fx-background-radius: 6px 0  0 6px;
+}
+.status-bar .button {
+    /* -fx-border-radius: 0;*/
+    -fx-background-radius: 0 6px 6px 0;
+    /*-fx-border-width: 0 1px 1px 1px;*/
+}

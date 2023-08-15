@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:id="mainPane" fx:controller="org.entframework.javafx.MainCtrl">
+    <top>
+        <MenuBar fx:id="menuBar">
+            <Menu text="%main.menu.file">
+                <MenuItem text="%main.menu.show.logs" onAction="#showLogs" />
+                <MenuItem text="%main.menu.show.settings" onAction="#showSettings" />
+                <MenuItem text="%main.save.settings" onAction="#saveSettings" />
+                <MenuItem text="%main.menu.exit" onAction="#onExit" />
+            </Menu>
+            <Menu fx:id="sessionMenu" text="%main.menu.session" />
+            <Menu text="%main.menu.appearance">
+                <Menu fx:id="themeSettingMenu" text="%main.menu.theme">
+                    <RadioMenuItem fx:id="themePrimerLightButton" text="Primer Light"/>
+                    <RadioMenuItem fx:id="themePrimerDarkButton" text="Primer Dark"/>
+                    <RadioMenuItem fx:id="themeNordLightButton" text="Nord Light"/>
+                    <RadioMenuItem fx:id="themeNordDarkButton" text="Nord Dark"/>
+                    <RadioMenuItem fx:id="themeCupertinoLightButton" text="Cupertino Light"/>
+                    <RadioMenuItem fx:id="themeCupertinoDarkButton" text="Cupertino Dark"/>
+                    <RadioMenuItem fx:id="themeDraculaButton" text="Dracula"/>
+                </Menu>
+                <Menu fx:id="languageMenu" text="%main.menu.language">
+                </Menu>
+            </Menu>
+            <Menu text="%main.menu.help">
+                <MenuItem text="%main.menu.about" onAction="#showAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>

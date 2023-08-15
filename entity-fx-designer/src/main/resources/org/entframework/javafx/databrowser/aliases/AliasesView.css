@@ -1,0 +1,10 @@
+/*
+ * Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+ */
+
+.alias-cell-normal {
+    -fx-text-fill: -color-base-0;
+}
+.alias-cell-cut-copy {
+    -fx-text-fill: -color-base-3;
+}

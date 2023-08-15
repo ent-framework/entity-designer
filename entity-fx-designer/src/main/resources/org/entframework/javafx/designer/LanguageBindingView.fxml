@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+  -->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.entframework.javafx.designer.LanguageBindingCtrl">
+    <top>
+        <VBox>
+            <ToolBar fx:id="languageTypes">
+                <padding>
+                    <Insets bottom="4" left="4" right="4" top="4"/>
+                </padding>
+            </ToolBar>
+            <ToolBar>
+                <padding>
+                    <Insets bottom="4" left="4" right="4" top="4"/>
+                </padding>
+                <Button onAction="#addBinding" prefHeight="32.5" prefWidth="40" styleClass="action-bar-btn">
+                    <graphic>
+                        <FontIcon iconLiteral="anto-plus-circle"/>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="%tooltip.add-language-binding"/>
+                    </tooltip>
+                </Button>
+                <Button onAction="#onClose" prefHeight="32.5" prefWidth="40" styleClass="action-bar-btn">
+                    <graphic>
+                        <FontIcon iconLiteral="anto-close"/>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="%tooltip.close"/>
+                    </tooltip>
+                </Button>
+            </ToolBar>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.5">
+            <AnchorPane prefHeight="200.0" prefWidth="400.0">
+                <TableView fx:id="tableView" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0"/>
+            </AnchorPane>
+            <AnchorPane prefWidth="400.0">
+                <VBox fx:id="editPane" AnchorPane.leftAnchor="2" AnchorPane.rightAnchor="2" AnchorPane.topAnchor="2"/>
+                <ToolBar AnchorPane.bottomAnchor="2" AnchorPane.rightAnchor="2" AnchorPane.leftAnchor="2">
+                    <padding>
+                        <Insets bottom="4" left="4" right="4" top="4"/>
+                    </padding>
+                    <Button fx:id="btnAdd" mnemonicParsing="false" text="%tooltip.save"/>
+                    <Button fx:id="btnReset" mnemonicParsing="false" text="%tooltip.reset"/>
+                </ToolBar>
+            </AnchorPane>
+        </SplitPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,10 @@
+/*
+ * Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+ */
+
+.driver-cell-predefined {
+    -fx-text-fill: -color-base-0;
+}
+.driver-cell-custom {
+    -fx-text-fill: -color-base-3;
+}

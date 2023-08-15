@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated entity -->
+      <package
+            uri="http://org.entframework.designer.entitydesigner.model/1.0"
+            class="org.entframework.javafx.designer.entitydesigner.model.EntityPackage"
+            genModel="model/entity.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+/*
+ * Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+ */
+
+
+#editPane .simple-control .label {
+    /*-fx-max-width: 180px;*/
+    /*-fx-min-width: 150px;*/
+}

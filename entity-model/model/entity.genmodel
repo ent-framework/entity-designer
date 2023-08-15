@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/entity-model/src/main/java" editDirectory="/entity-model.edit/src"
+    modelPluginID="entity-model" modelName="Persistence" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="17.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>entity.ecore</foreignModel>
+  <genPackages prefix="Entity" basePackage="org.entframework.javafx.designer.entitydesigner"
+      disposableProviderFactory="true" ecorePackage="entity.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="entity.ecore#//ELanguage">
+      <genEnumLiterals ecoreEnumLiteral="entity.ecore#//ELanguage/Java"/>
+      <genEnumLiterals ecoreEnumLiteral="entity.ecore#//ELanguage/Kotlin"/>
+      <genEnumLiterals ecoreEnumLiteral="entity.ecore#//ELanguage/DotNet"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="entity.ecore#//ERelationType">
+      <genEnumLiterals ecoreEnumLiteral="entity.ecore#//ERelationType/ManyToOne"/>
+      <genEnumLiterals ecoreEnumLiteral="entity.ecore#//ERelationType/OneToMany"/>
+    </genEnums>
+    <genClasses ecoreClass="entity.ecore#//EEntityObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEntityObject/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEntityObject/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEntityObject/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEntityObject/comment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//EEntityObject/primaryKey"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//EEntityObject/table"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EEntityObject/fields"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EEntityObject/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EFieldObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EFieldObject/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EFieldObject/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EFieldObject/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EFieldObject/comment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EFieldObject/properties"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//EFieldObject/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EFieldObject/version"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EFieldObject/languages"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EPersistenceObject">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EPersistenceObject/modules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EPersistenceObject/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EPersistenceObject/supportedLanguages"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="entity.ecore#//EModelObject">
+      <genOperations ecoreOperation="entity.ecore#//EModelObject/getName"/>
+      <genOperations ecoreOperation="entity.ecore#//EModelObject/setName">
+        <genParameters ecoreParameter="entity.ecore#//EModelObject/setName/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EModuleObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EModuleObject/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EModuleObject/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EModuleObject/namespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EModuleObject/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EModuleObject/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EModuleObject/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EEnumObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEnumObject/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEnumObject/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EEnumObject/constants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EEnumObject/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EEnumLiteralObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEnumLiteralObject/literal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEnumLiteralObject/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EEnumLiteralObject/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//EEnumLiteralObject/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EPropertyMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EPropertyMapEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EPropertyMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ERelationship">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ERelationship/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ERelationship/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ERelationship/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ERelationship/comment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//ERelationship/targetEntity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//ERelationship/targetField"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//EColumn">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/unique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/nullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//EColumn/jdbcType"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ETable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ETable/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ETable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ESupportedLanguages">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ESupportedLanguages/language"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ELanguageSettings">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//ELanguageSettings/bindings"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ELanguageSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ELanguageSpecification/shortName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ELanguageSpecification/primitive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ELanguageSpecification/qualifiedName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ELanguageSpecification/language"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ESupportedJdbcTypes">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ESupportedJdbcTypes/jdbcType"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ELanguageMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entity.ecore#//ELanguageMapEntry/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//ELanguageMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="entity.ecore#//ELanguageBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entity.ecore#//ELanguageBinding/languageSpecification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entity.ecore#//ELanguageBinding/jdbcTypes"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

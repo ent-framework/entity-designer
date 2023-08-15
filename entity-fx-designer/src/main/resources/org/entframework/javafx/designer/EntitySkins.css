@@ -1,0 +1,146 @@
+.root {
+	-background-color: rgba(240, 235, 242, 0.9);
+	-border-color: rgba(160, 160, 160, 0.8);
+	-halo-color: rgba(80, 80, 80, 0.8);
+}
+
+.editor-container {
+	-fx-background-color: -color-bg-subtle;
+}
+
+.entity-node-box {
+	-fx-background-color: -color-bg-default;
+	-fx-background-insets: 1;
+	-fx-border-width: 1;
+}
+
+.entity-node-box:selected {
+	-fx-background-color: derive(-color-bg-default, -5%);
+}
+
+.entity-node-border {
+	-fx-stroke: -color-border-default;
+	-fx-stroke-width: 1;
+	-fx-stroke-type: inside;
+	-fx-fill: null;
+	-fx-effect: dropshadow(gaussian, rgb(150, 150, 150), 5, 0, 1, 1);
+}
+
+.entity-node-selection-halo {
+	-fx-stroke: -halo-color;
+	-fx-opacity: 0.6;
+	-fx-stroke-type: inside;
+	-fx-stroke-line-cap: butt;
+	-fx-fill: null;
+}
+
+.entity-node-header {
+	-fx-padding: 2 5 2 5;
+	-fx-background-color: -color-bg-overlay;
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: -color-border-default;
+	-fx-opacity: 0.9;
+}
+
+.entity-node-title {
+	-fx-font-size: 14px;
+	-fx-text-fill: -color-fg-default;
+}
+
+.entity-node-field {
+	-fx-font-size: 14px;
+}
+
+.entity-connector {
+	-fx-border-color: -color-border-default;
+	-fx-border-width: 1;
+	-fx-stroke-type: inside;
+	-fx-background-color: white;
+	-fx-opacity: 0;
+	-fx-effect: dropshadow(one-pass-box, rgba(180, 180, 180), 5, 0, 1, 1);
+}
+
+.entity-connector:selected {
+	-fx-background-color: derive(white, -4%);
+	-fx-opacity: 0.6;
+}
+
+.entity-connector:hover, .entity-connector:allowed, .entity-connector:forbidden, .entity-connector:selected:hover {
+	-fx-background-color: white;
+	-fx-opacity: 0.6;
+}
+
+.entity-connector:pressed {
+	-fx-background-color: derive(white, -2%);
+	-fx-opacity: 0.6;
+}
+
+.entity-connector-forbidden-graphic {
+	-fx-stroke: -color-border-default;
+	-fx-stroke-width: 1;
+	-fx-fill: null;
+}
+
+.entity-tail  {
+	-fx-stroke: derive(-color-border-default, 50%);
+	-fx-effect: dropshadow(one-pass-box, rgb(220, 220, 220), 5, 0, 1, 1);
+}
+
+.entity-tail-endpoint  {
+	-fx-stroke: derive(-color-border-default, 50%);
+	-fx-stroke-type: inside;
+	-fx-fill: derive(-background-color, 50%);
+	-fx-effect: dropshadow(one-pass-box, rgb(220, 220, 220), 5, 0, 1, 1);
+}
+
+.entity-skins .default-connection {
+	-fx-stroke-width: 1;
+	-fx-stroke: -color-border-default;
+	-fx-effect: dropshadow(one-pass-box, rgba(180, 180, 180), 5, 0, 1, 1);
+}
+
+.entity-skins .default-connection-background {
+	-fx-stroke-width: 7;
+	-fx-stroke: transparent;
+}
+
+.entity-skins .default-connection-hover-effect {
+	-fx-stroke-width: 1;
+	-fx-stroke: -color-border-default;
+	-fx-stroke-dash-array: 8 4;
+	-fx-stroke-dash-offset: 4;
+	-fx-stroke-type: inside;
+	-fx-stroke-line-cap: butt;
+	-fx-fill: transparent;
+}
+
+.entity-skins .default-connection-hover-effect:pressed {
+	-fx-stroke-width: 1;
+	-fx-stroke: null;
+	-fx-stroke-type: inside;
+	-fx-fill: null;
+}
+
+.entity-skins .default-joint {
+	/* Invisible by default but make sure it has the exact same dimensions as for hover and pressed effects. */
+	-fx-border-width: 1;
+	-fx-border-color: transparent;
+	-fx-border-style: solid inside;
+	-fx-background-color: transparent;
+	-fx-border-radius: 0;
+	-fx-background-radius: 0;
+}
+
+.entity-skins .default-joint:hover, .entity-skins .default-joint:selected:hover {
+	-fx-border-color: -color-border-default;
+	-fx-background-color: white;
+	-fx-opacity: 0.6;
+	-fx-effect: dropshadow(one-pass-box, rgba(180, 180, 180), 5, 0, 1, 1);
+}
+
+.entity-skins .default-joint:pressed, .entity-skins .default-joint:selected, .entity-skins .default-joint:selected:pressed {
+	-fx-border-color: -color-border-default;
+	-fx-background-color: derive(white, -4%);
+	-fx-opacity: 0.6;
+	-fx-effect: dropshadow(one-pass-box, rgba(180, 180, 180), 5, 0, 1, 1);
+}

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.entframework.designer</groupId>
+    <artifactId>entity-fx-designer</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>entity-fx-designer</name>
+
+    <parent>
+        <groupId>org.entframework.designer</groupId>
+        <artifactId>entity-designer</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <properties>
+        <!--<main-class>org.entframework.designer.entitydesigner/org.entframework.designer.entitydesigner.DesignerApplication</main-class>-->
+        <main-class>org.entframework.javafx.DesignerApplication</main-class>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.9.2</junit.version>
+        <poi.version>4.1.2</poi.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.entframework.designer</groupId>
+            <artifactId>entity-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.eckig.grapheditor</groupId>
+            <artifactId>grapheditor-core</artifactId>
+            <version>19.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.verison}</version>
+            <classifier>mac</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx.verison}</version>
+            <classifier>mac</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.verison}</version>
+            <classifier>mac</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.entframework.designer</groupId>
+            <artifactId>forms-fx</artifactId>
+            <version>11.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.synedra</groupId>
+            <artifactId>validatorfx</artifactId>
+            <version>0.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>12.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-antdesignicons-pack</artifactId>
+            <version>12.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-fontawesome5-pack</artifactId>
+            <version>12.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-materialdesign2-pack</artifactId>
+            <version>12.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.fxmisc.flowless/flowless -->
+        <dependency>
+            <groupId>org.fxmisc.flowless</groupId>
+            <artifactId>flowless</artifactId>
+            <version>0.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fifesoft/rsyntaxtextarea -->
+        <dependency>
+            <groupId>com.fifesoft</groupId>
+            <artifactId>rsyntaxtextarea</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.fxmisc.richtext/richtextfx -->
+        <dependency>
+            <groupId>org.fxmisc.richtext</groupId>
+            <artifactId>richtextfx</artifactId>
+            <version>0.11.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <executions>
+                    <execution>
+                        <!-- Default configuration for running with: mvn clean javafx:run -->
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>${main-class}</mainClass>
+                            <launcher>app</launcher>
+                            <jlinkZipName>app</jlinkZipName>
+                            <jlinkImageName>app</jlinkImageName>
+                            <noManPages>true</noManPages>
+                            <stripDebug>true</stripDebug>
+                            <noHeaderFiles>true</noHeaderFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${java.home}/bin/java</executable>
+                            <arguments>
+                                <argument>--module-path</argument>
+                                <argument>
+                                    ${project.build.directory}/modules
+                                </argument>
+                                <argument>--module</argument>
+                                <argument>${main-class}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Main-Class>${main-class}</Main-Class>
+                        </manifestEntries>
+                    </archive>
+                    <outputDirectory>
+                        ${project.build.directory}/modules
+                    </outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <version>1.0.0.Final</version>
+                <executions>
+                    <execution>
+                        <id>add-module-info-to-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/modules</outputDirectory>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                            <failOnWarning>true</failOnWarning>
+                            <jdepsExtraArgs>
+                                <arg>--ignore-missing-deps</arg>
+                                <arg>--multi-release=9</arg>
+                            </jdepsExtraArgs>
+                            <modules>
+                                <!--<module>org.entframework.designer.entitydesigner</module>-->
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-aop</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>spring.aop</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>spring.beans</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>spring.context</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                    </artifact>
+                                    <!--<moduleInfo>
+                                        <name>spring.core</name>
+                                    </moduleInfo>-->
+                                    <moduleInfoSource>
+                                        module spring.core {
+                                        requires jdk.jfr;
+
+                                        requires transitive java.desktop;
+                                        requires transitive java.xml;
+                                        requires transitive jdk.unsupported;
+                                        requires transitive spring.jcl;
+
+                                        exports org.springframework.asm;
+                                        exports org.springframework.cglib;
+                                        exports org.springframework.cglib.beans;
+                                        exports org.springframework.cglib.core;
+                                        exports org.springframework.cglib.core.internal;
+                                        exports org.springframework.cglib.proxy;
+                                        exports org.springframework.cglib.reflect;
+                                        exports org.springframework.cglib.transform;
+                                        exports org.springframework.cglib.transform.impl;
+                                        exports org.springframework.cglib.util;
+                                        exports org.springframework.core;
+                                        exports org.springframework.core.annotation;
+                                        exports org.springframework.core.codec;
+                                        exports org.springframework.core.convert;
+                                        exports org.springframework.core.convert.converter;
+                                        exports org.springframework.core.convert.support;
+                                        exports org.springframework.core.env;
+                                        exports org.springframework.core.io;
+                                        exports org.springframework.core.io.buffer;
+                                        exports org.springframework.core.io.support;
+                                        exports org.springframework.core.log;
+                                        exports org.springframework.core.metrics;
+                                        exports org.springframework.core.metrics.jfr;
+                                        exports org.springframework.core.serializer;
+                                        exports org.springframework.core.serializer.support;
+                                        exports org.springframework.core.style;
+                                        exports org.springframework.core.task;
+                                        exports org.springframework.core.task.support;
+                                        exports org.springframework.core.type;
+                                        exports org.springframework.core.type.classreading;
+                                        exports org.springframework.core.type.filter;
+                                        exports org.springframework.lang;
+                                        exports org.springframework.objenesis;
+                                        exports org.springframework.objenesis.instantiator;
+                                        exports org.springframework.objenesis.instantiator.android;
+                                        exports org.springframework.objenesis.instantiator.annotations;
+                                        exports org.springframework.objenesis.instantiator.basic;
+                                        exports org.springframework.objenesis.instantiator.gcj;
+                                        exports org.springframework.objenesis.instantiator.perc;
+                                        exports org.springframework.objenesis.instantiator.sun;
+                                        exports org.springframework.objenesis.instantiator.util;
+                                        exports org.springframework.objenesis.strategy;
+                                        exports org.springframework.util;
+                                        exports org.springframework.util.backoff;
+                                        exports org.springframework.util.comparator;
+                                        exports org.springframework.util.concurrent;
+                                        exports org.springframework.util.function;
+                                        exports org.springframework.util.unit;
+                                        exports org.springframework.util.xml;
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-expression</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>spring.expression</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-jcl</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>spring.jcl</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework.boot</groupId>
+                                        <artifactId>spring-boot-starter-aop</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>spring.boot.starter.aop</name>
+                                    </moduleInfo>
+                                </module>
+
+                                <module>
+                                    <artifact>
+                                        <groupId>org.yaml</groupId>
+                                        <artifactId>snakeyaml</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>snakeyaml</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.aspectj</groupId>
+                                        <artifactId>aspectjweaver</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.aspectj.weaver</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.apache.commons</groupId>
+                                        <artifactId>commons-lang3</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.apache.commons.lang3</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.apache.logging.log4j</groupId>
+                                        <artifactId>log4j-to-slf4j</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.apache.logging.slf4j</name>
+                                    </moduleInfo>
+                                </module>
+
+                                <module>
+                                    <artifact>
+                                        <groupId>org.eclipse.emf</groupId>
+                                        <artifactId>org.eclipse.emf.common</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.eclipse.emf.common</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.eclipse.emf</groupId>
+                                        <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.eclipse.emf.ecore.xmi</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.eclipse.emf</groupId>
+                                        <artifactId>org.eclipse.emf.ecore</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.eclipse.emf.ecore</name>
+                                    </moduleInfo>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.eclipse.emf</groupId>
+                                        <artifactId>org.eclipse.emf.edit</artifactId>
+                                    </artifact>
+                                    <moduleInfo>
+                                        <name>org.eclipse.emf.edit</name>
+                                    </moduleInfo>
+                                </module>
+                            </modules>
+                            <!--<launcher>
+                                <name>test33</name>
+                                <module>${main-class}</module>
+                            </launcher>-->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-runtime-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-runtime-image</goal>
+                        </goals>
+                        <configuration>
+                            <modulePath>
+                                <path>${project.build.directory}/classes</path>
+                                <path>${project.build.directory}/modules</path>
+                            </modulePath>
+                            <modules>
+                                <module>org.entframework.javafx.designer.entitydesigner</module>
+                                <module>spring.context</module>
+                            </modules>
+                            <excludedResources>
+                                <pattern>glob:/org.openjfx/javafx-base/*</pattern>
+                                <pattern>glob:/org.openjfx/javafx-controls</pattern>
+                                <pattern>glob:/org.openjfx/javafx-graphics/*</pattern>
+                                <pattern>glob:/org.springframework.boot/spring-boot-starter</pattern>
+                            </excludedResources>
+                            <launcher>
+                                <name>dashmanserver</name>
+                                <module>org.entframework.javafx.designer.entitydesigner</module>
+                            </launcher>
+                            <outputDirectory>
+                                ${project.build.directory}/jlink-image
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/modules</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    &lt;!&ndash; put your configurations here &ndash;&gt;
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>${main-class}</mainClass>
+                        </transformer>
+                     </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+        </plugins>
+    </build>
+</project>

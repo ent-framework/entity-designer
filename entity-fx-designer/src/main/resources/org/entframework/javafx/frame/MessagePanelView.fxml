@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (c) 2023. Licensed under the Apache License, Version 2.0.
+  -->
+
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane fx:id="root" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" styleClass="message-pane"
+            fx:controller="org.entframework.javafx.frame.MessagePanelCtrl">
+    <VBox fx:id="vBox" />
+</ScrollPane>
