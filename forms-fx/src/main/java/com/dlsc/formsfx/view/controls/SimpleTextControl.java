@@ -22,6 +22,9 @@ package com.dlsc.formsfx.view.controls;
 
 import com.dlsc.formsfx.model.structure.StringField;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -29,6 +32,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -184,6 +189,19 @@ public class SimpleTextControl extends SimpleControl<StringField> {
 
         editableField.focusedProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(editableField));
         editableArea.focusedProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(editableArea));
+
+        if (field.isFireChangeImmediately()!=null && field.isFireChangeImmediately()) {
+            editableField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (oldValue && !newValue) {
+                    field.persist();
+                }
+            });
+            editableField.setOnKeyPressed(event -> {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    field.persist();
+                }
+            });
+        }
     }
 
     @Override

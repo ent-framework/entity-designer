@@ -10,6 +10,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
 import javafx.beans.property.SimpleBooleanProperty;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,16 +39,18 @@ public class ModelGraphEditor extends DefaultGraphEditor {
     };
 
     private final EContentAdapter mContentAdapter = new ContentChangedAdapter();
+    private final Adapter extraAdapter;
 
     private final BooleanProperty undoStatus = new SimpleBooleanProperty();
     private final BooleanProperty redoStatus = new SimpleBooleanProperty();
 
-    public ModelGraphEditor() {
-        this(null);
+    public ModelGraphEditor(Adapter adapter) {
+        this(null, adapter);
     }
 
-    public ModelGraphEditor(GraphEditorProperties pProperties) {
+    public ModelGraphEditor(GraphEditorProperties pProperties, Adapter adapter) {
         super(pProperties);
+        this.extraAdapter = adapter;
         this.mPersistenceProperty.addListener((observable, oldValue, newValue) -> persistenceChange(oldValue, newValue));
 
         modelProperty().addListener((observable, oldValue, newValue) -> {
@@ -55,6 +58,7 @@ public class ModelGraphEditor extends DefaultGraphEditor {
                 final EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(oldValue);
                 if (editingDomain != null) {
                     editingDomain.getResourceSet().eAdapters().remove(mContentAdapter);
+                    editingDomain.getResourceSet().eAdapters().remove(extraAdapter);
                 }
             }
 
@@ -62,6 +66,7 @@ public class ModelGraphEditor extends DefaultGraphEditor {
                 final EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(newValue);
                 if (editingDomain != null) {
                     editingDomain.getResourceSet().eAdapters().add(mContentAdapter);
+                    editingDomain.getResourceSet().eAdapters().add(extraAdapter);
                 }
             }
         });

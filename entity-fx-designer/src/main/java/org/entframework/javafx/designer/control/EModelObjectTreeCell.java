@@ -47,7 +47,7 @@ public class EModelObjectTreeCell extends TreeCell<EModelObject> {
         }
         setText(null);
         setGraphic(textField);
-        textField.selectAll();
+        textField.requestFocus();
     }
 
     @Override
@@ -62,12 +62,22 @@ public class EModelObjectTreeCell extends TreeCell<EModelObject> {
         EModelObject modelObject = getItem();
         textField.setOnKeyReleased(t -> {
             if (t.getCode() == KeyCode.ENTER) {
-                modelObject.setName(textField.getText());
-                commitEdit(modelObject);
+                setValueByNodeType(modelObject, textField.getText());
             } else if (t.getCode() == KeyCode.ESCAPE) {
                 cancelEdit();
             }
         });
+    }
+
+    private void setValueByNodeType(EModelObject modelObject, String text) {
+        if (modelObject instanceof EEntityObject) {
+            EventCommands.attributeUpdate(modelObject, EntityPackage.Literals.EENTITY_OBJECT__NAME, text);
+        } else if (modelObject instanceof EModuleObject) {
+            EventCommands.attributeUpdate(modelObject, EntityPackage.Literals.EMODULE_OBJECT__NAME, text);
+        } else if (modelObject instanceof EFieldObject) {
+            EventCommands.attributeUpdate(modelObject, EntityPackage.Literals.EFIELD_OBJECT__NAME, text);
+        }
+        commitEdit(modelObject);
     }
 
     @Override

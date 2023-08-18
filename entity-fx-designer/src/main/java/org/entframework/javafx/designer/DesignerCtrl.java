@@ -79,11 +79,11 @@ public class DesignerCtrl extends AbstractFxmlCtrl {
             try {
                 AbstractFxmlView view = SpringUtil.getBean(DesignerTabView.class);
                 TabWithSpringView tab = new TabWithSpringView(view);
-                DesignerTabCtrl designerTabController = (DesignerTabCtrl) view.getPresenter();
-                designerTabController.loadFromFile(file);
+                DesignerTabCtrl designerTabCtrl = (DesignerTabCtrl) view.getPresenter();
+                designerTabCtrl.loadFromFile(file);
                 tab.setClosable(true);
                 tab.setText(file.getName());
-                tab.setOnClosed(event -> designerTabController.clearListener());
+                tab.setOnClosed(event -> designerTabCtrl.onClose());
                 AppState.get().getSessionManager().getSessionTabbedPaneCtrl().addTab(tab);
 
                 if (!_btnPinned.isSelected()) {
@@ -112,7 +112,7 @@ public class DesignerCtrl extends AbstractFxmlCtrl {
         DesignerTabCtrl designerTabController = (DesignerTabCtrl) view.getPresenter();
         tab.setClosable(true);
         tab.setText("Untiled" + GraphEditorPersistence.FILE_EXTENSION);
-        tab.setOnClosed(event -> designerTabController.clearListener());
+        tab.setOnClosed(event -> designerTabController.onClose());
         tab.setModified(true);
         AppState.get().getSessionManager().getSessionTabbedPaneCtrl().addTab(tab);
 

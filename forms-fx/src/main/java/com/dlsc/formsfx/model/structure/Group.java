@@ -51,6 +51,7 @@ public class Group {
      *   spacing for vertical/horizontal gaps between controls.
      */
     private final int SPACING = 10;
+    private Boolean fireChangeImmediately;
     protected int space = SPACING;
 
     /**
@@ -279,6 +280,15 @@ public class Group {
     public Group withSpace(int space) {
         this.space = space;
         return this;
+    }
+
+    public Group fireChangeImmediately(boolean arg) {
+        this.fireChangeImmediately = arg;
+        return this;
+    }
+
+    public Boolean isFireChangeImmediately() {
+        return this.fireChangeImmediately;
     }
 
     public int getSpace() {

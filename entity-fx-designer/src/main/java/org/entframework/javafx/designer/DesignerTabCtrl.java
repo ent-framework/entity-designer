@@ -32,6 +32,7 @@ import org.entframework.javafx.common.utils.ModelObjectUtils;
 import org.entframework.javafx.common.utils.ResourceUtils;
 import org.entframework.javafx.designer.command.EventCommands;
 import org.entframework.javafx.designer.control.EModelObjectTreeCell;
+import org.entframework.javafx.designer.emf.MultiAttributeFeatureAdapter;
 import org.entframework.javafx.designer.entitydesigner.model.*;
 import org.entframework.javafx.designer.ext.ModelGraphEditor;
 import org.entframework.javafx.designer.form.ModelForm;
@@ -43,21 +44,21 @@ import org.entframework.javafx.designer.skin.SkinController;
 import org.kordamp.ikonli.antdesignicons.AntDesignIconsOutlined;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.context.annotation.Scope;
-import org.springframework.core.ResolvableType;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 
 @FXMLController
 @Scope("prototype")
 public class DesignerTabCtrl extends AbstractFxmlCtrl {
     private static final String STYLE_CLASS_ENTITY_SKINS = "entity-skins"; //$NON-NLS-1$
-    private final ModelGraphEditor graphEditor = new ModelGraphEditor();
+    private ModelGraphEditor graphEditor;
     private final GraphEditorPersistence graphEditorPersistence = new GraphEditorPersistence();
-    private final SelectionCopier selectionCopier = new SelectionCopier(graphEditor.getSkinLookup(),
-            graphEditor.getSelectionManager());
+    private SelectionCopier selectionCopier;
 
     private final ObjectProperty<EModuleObject> mModuleProperty = new ObjectPropertyBase<>() {
 
@@ -94,6 +95,20 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
     private ModelForm<?> modelForm;
 
     public void initialize() {
+        MultiAttributeFeatureAdapter multiAttributeFeatureAdapter = new MultiAttributeFeatureAdapter(List.of(
+                EntityPackage.Literals.EMODULE_OBJECT__NAME,
+                EntityPackage.Literals.EENTITY_OBJECT__NAME,
+                EntityPackage.Literals.EFIELD_OBJECT__NAME
+        ), new BiFunction<EObject, Object, Void>() {
+            @Override
+            public Void apply(EObject eObject, Object o) {
+                treeView.refresh();
+                return null;
+            }
+        });
+        graphEditor = new ModelGraphEditor(multiAttributeFeatureAdapter);
+        selectionCopier = new SelectionCopier(graphEditor.getSkinLookup(),
+                graphEditor.getSelectionManager());
 
         final GModel model = GraphFactory.eINSTANCE.createGModel();
         final EPersistenceObject persistence = EntityFactory.eINSTANCE.createEPersistenceObject();
@@ -192,14 +207,6 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
         graphEditorPersistence.loadModel(file, this.graphEditor);
         graphEditorContainer.panTo(Pos.CENTER);
         resetTree(this.graphEditor.getPersistence());
-    }
-
-    public SkinController getSkinController() {
-        return this.entitySkinController;
-    }
-
-    public SelectionCopier getSelectionCopier() {
-        return selectionCopier;
     }
 
     private void resetTree(EPersistenceObject persistence) {
@@ -322,7 +329,7 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
         }
     }
 
-    public void clearListener() {
+    public void onClose() {
         DefaultEventBus.getInstance().unsubscribe(this::handleApplicationEvent);
     }
 }

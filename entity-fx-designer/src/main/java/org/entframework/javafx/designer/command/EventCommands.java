@@ -9,9 +9,10 @@ import io.github.eckig.grapheditor.SkinLookup;
 import io.github.eckig.grapheditor.model.GModel;
 import io.github.eckig.grapheditor.model.GNode;
 import io.github.eckig.grapheditor.model.GraphPackage;
-import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -93,19 +94,19 @@ public class EventCommands {
         DefaultEventBus.getInstance().publish(new NodeEvent(model, null, NodeEvent.EventType.REDO));
     }
 
-    public static void entityAttributeUpdate(EEntityObject pOldValue, EEntityObject pNewValue) {
-        EEntityObject oldValue= Objects.requireNonNull(pOldValue);
-        EEntityObject newValue= Objects.requireNonNull(pNewValue);
-        GModel model = Objects.requireNonNull(ResourceUtils.findModel(pOldValue));
+    /**
+     * Common attribute update method
+     * @param targetObject
+     * @param attribute
+     * @param pNewValue
+     */
+    public static void attributeUpdate(EObject targetObject, EAttribute attribute, Object pNewValue) {
+        Objects.requireNonNull(targetObject);
+        Objects.requireNonNull(pNewValue);
+        GModel model = Objects.requireNonNull(ResourceUtils.findModel(targetObject));
         final EditingDomain editingDomain = getEditingDomain(model);
         if (editingDomain != null) {
-            CompoundCommand command = new CompoundCommand();
-            if (!StringUtils.equals(oldValue.getName() , newValue.getName())) {
-                command.append(SetCommand.create(editingDomain, oldValue, EntityPackage.Literals.EENTITY_OBJECT__NAME, newValue.getName()));
-            }
-            if (!StringUtils.equals(oldValue.getDescription() , newValue.getDescription())) {
-                command.append(SetCommand.create(editingDomain, oldValue, EntityPackage.Literals.EENTITY_OBJECT__DESCRIPTION, newValue.getDescription()));
-            }
+            Command command = SetCommand.create(editingDomain, targetObject, attribute, pNewValue);
             if (command.canExecute()) {
                 editingDomain.getCommandStack().execute(command);
             }

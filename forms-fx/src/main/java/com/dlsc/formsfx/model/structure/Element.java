@@ -43,7 +43,7 @@ public abstract class Element<E extends Element<E>> {
     protected final ListProperty<String> styleClass = new SimpleListProperty<>(FXCollections.observableArrayList());
     protected final IntegerProperty span = new SimpleIntegerProperty(12);
     protected final IntegerProperty labelSpan = new SimpleIntegerProperty(4);
-
+    protected Boolean fireChangeImmediately;
     /**
      * Sets the id property of the current field.
      *
@@ -127,5 +127,14 @@ public abstract class Element<E extends Element<E>> {
 
     public ListProperty<String> styleClassProperty() {
         return styleClass;
+    }
+
+    public E fireChangeImmediately(boolean arg) {
+        this.fireChangeImmediately = arg;
+        return (E) this;
+    }
+
+    public Boolean isFireChangeImmediately() {
+        return this.fireChangeImmediately;
     }
 }

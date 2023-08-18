@@ -116,6 +116,16 @@ public class Form {
         // translation on the form and its contained elements.
 
         translationService.addListener((observable, oldValue, newValue) -> translate());
+
+        this.groups.forEach(group -> {
+            if (group.isFireChangeImmediately() != null && group.isFireChangeImmediately()) {
+                group.elements.forEach(element -> {
+                    if (element.isFireChangeImmediately() == null) {
+                        element.fireChangeImmediately(group.isFireChangeImmediately());
+                    }
+                });
+            }
+        });
     }
 
     /**
