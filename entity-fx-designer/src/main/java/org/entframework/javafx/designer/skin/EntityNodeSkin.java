@@ -45,6 +45,7 @@ public class EntityNodeSkin extends GNodeSkin {
     private static final String STYLE_CLASS_HEADER = "entity-node-header"; //$NON-NLS-1$
     private static final String STYLE_CLASS_TITLE = "entity-node-title"; //$NON-NLS-1$
     private static final String STYLE_CLASS_FIELD = "entity-node-field"; //$NON-NLS-1$
+    private static final String STYLE_CLASS_PK = "entity-node-pk"; //$NON-NLS-1$
 
     private static final PseudoClass PSEUDO_CLASS_SELECTED = PseudoClass.getPseudoClass("selected"); //$NON-NLS-1$
     private static final double HALO_OFFSET = 5;
@@ -103,7 +104,14 @@ public class EntityNodeSkin extends GNodeSkin {
 
             fieldContent.getChildren().clear();
             if (entity.getPrimaryKey() != null) {
-
+                EFieldObject primaryKey = entity.getPrimaryKey();
+                HBox hBox = new HBox();
+                Label label = new Label(primaryKey.getName());
+                label.getStyleClass().add(STYLE_CLASS_PK);
+                label.setPadding(new Insets(0, 0, 0, 10));
+                label.setGraphic(FontIcon.of(AntDesignIconsOutlined.KEY));
+                hBox.getChildren().add(label);
+                fieldContent.getChildren().add(hBox);
             }
             if (ObjectUtils.isNotEmpty(entity.getFields())) {
                 for (EFieldObject field : entity.getFields()) {

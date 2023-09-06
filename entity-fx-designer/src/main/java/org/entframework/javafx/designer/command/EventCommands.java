@@ -11,9 +11,9 @@ import io.github.eckig.grapheditor.model.GNode;
 import io.github.eckig.grapheditor.model.GraphPackage;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.*;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -26,6 +26,7 @@ import org.entframework.javafx.designer.entitydesigner.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -95,12 +96,12 @@ public class EventCommands {
     }
 
     /**
-     * Common attribute update method
+     * Common attribute/reference update method
      * @param targetObject
      * @param attribute
      * @param pNewValue
      */
-    public static void attributeUpdate(EObject targetObject, EAttribute attribute, Object pNewValue) {
+    public static void attributeUpdate(EObject targetObject, EStructuralFeature attribute, Object pNewValue) {
         Objects.requireNonNull(targetObject);
         Objects.requireNonNull(pNewValue);
         GModel model = Objects.requireNonNull(ResourceUtils.findModel(targetObject));

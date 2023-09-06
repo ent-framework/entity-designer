@@ -20,8 +20,8 @@ public class FieldForm extends ModelForm<EFieldObject> {
 
     private final StringProperty name = new SimpleStringProperty("");
     private final StringProperty description = new SimpleStringProperty("");
-    private final AttributeFeatureAdapter<String> nameAdapter = new AttributeFeatureAdapter<String>(EntityPackage.Literals.EENTITY_OBJECT__NAME, name::set);
-    private final AttributeFeatureAdapter<String> descriptionAdapter = new AttributeFeatureAdapter<String>(EntityPackage.Literals.EENTITY_OBJECT__DESCRIPTION, description::set);
+    private final AttributeFeatureAdapter<String> nameAdapter = new AttributeFeatureAdapter<String>(EntityPackage.Literals.EFIELD_OBJECT__NAME, name::set);
+    private final AttributeFeatureAdapter<String> descriptionAdapter = new AttributeFeatureAdapter<String>(EntityPackage.Literals.EFIELD_OBJECT__DESCRIPTION, description::set);
 
     public FieldForm(EFieldObject model) {
         super(model);
@@ -53,7 +53,7 @@ public class FieldForm extends ModelForm<EFieldObject> {
         name.set(StringUtils.defaultIfEmpty(model.getName(), ""));
         description.set(StringUtils.defaultIfEmpty(model.getDescription(), ""));
 
-        name.addListener((observable, oldValue, newValue) -> EventCommands.attributeUpdate(model, EntityPackage.Literals.EENTITY_OBJECT__NAME, newValue));
-        description.addListener((observable, oldValue, newValue) -> EventCommands.attributeUpdate(model, EntityPackage.Literals.EENTITY_OBJECT__DESCRIPTION, newValue));
+        name.addListener((observable, oldValue, newValue) -> EventCommands.attributeUpdate(model, EntityPackage.Literals.EFIELD_OBJECT__NAME, newValue));
+        description.addListener((observable, oldValue, newValue) -> EventCommands.attributeUpdate(model, EntityPackage.Literals.EFIELD_OBJECT__DESCRIPTION, newValue));
     }
 }

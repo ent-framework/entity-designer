@@ -99,12 +99,9 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
                 EntityPackage.Literals.EMODULE_OBJECT__NAME,
                 EntityPackage.Literals.EENTITY_OBJECT__NAME,
                 EntityPackage.Literals.EFIELD_OBJECT__NAME
-        ), new BiFunction<EObject, Object, Void>() {
-            @Override
-            public Void apply(EObject eObject, Object o) {
-                treeView.refresh();
-                return null;
-            }
+        ), (eObject, o) -> {
+            treeView.refresh();
+            return null;
         });
         graphEditor = new ModelGraphEditor(multiAttributeFeatureAdapter);
         selectionCopier = new SelectionCopier(graphEditor.getSkinLookup(),

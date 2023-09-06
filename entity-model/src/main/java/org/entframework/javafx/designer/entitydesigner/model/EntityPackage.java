@@ -151,7 +151,7 @@ public interface EntityPackage extends EPackage {
 	int EENTITY_OBJECT__COMMENT = EMODEL_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Primary Key</b></em>' reference.
+	 * The feature id for the '<em><b>Primary Key</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1349,10 +1349,10 @@ public interface EntityPackage extends EPackage {
 	EAttribute getEEntityObject_Comment();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.entframework.javafx.designer.entitydesigner.model.EEntityObject#getPrimaryKey <em>Primary Key</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.entframework.javafx.designer.entitydesigner.model.EEntityObject#getPrimaryKey <em>Primary Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Primary Key</em>'.
+	 * @return the meta object for the containment reference '<em>Primary Key</em>'.
 	 * @see org.entframework.javafx.designer.entitydesigner.model.EEntityObject#getPrimaryKey()
 	 * @see #getEEntityObject()
 	 * @generated
@@ -2256,7 +2256,7 @@ public interface EntityPackage extends EPackage {
 		EAttribute EENTITY_OBJECT__COMMENT = eINSTANCE.getEEntityObject_Comment();
 
 		/**
-		 * The meta object literal for the '<em><b>Primary Key</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Primary Key</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

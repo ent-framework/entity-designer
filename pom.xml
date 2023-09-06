@@ -21,6 +21,7 @@
         <module>jailer-engine</module>
         <module>forms-fx</module>
         <module>forms-fx-demo</module>
+        <module>graph-editor</module>
     </modules>
 
     <dependencyManagement>

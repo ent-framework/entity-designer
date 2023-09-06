@@ -118,22 +118,22 @@ public interface EEntityObject extends EModelObject {
 	void setComment(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Primary Key</b></em>' reference.
+	 * Returns the value of the '<em><b>Primary Key</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Primary Key</em>' reference.
+	 * @return the value of the '<em>Primary Key</em>' containment reference.
 	 * @see #setPrimaryKey(EFieldObject)
 	 * @see org.entframework.javafx.designer.entitydesigner.model.EntityPackage#getEEntityObject_PrimaryKey()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EFieldObject getPrimaryKey();
 
 	/**
-	 * Sets the value of the '{@link org.entframework.javafx.designer.entitydesigner.model.EEntityObject#getPrimaryKey <em>Primary Key</em>}' reference.
+	 * Sets the value of the '{@link org.entframework.javafx.designer.entitydesigner.model.EEntityObject#getPrimaryKey <em>Primary Key</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Primary Key</em>' reference.
+	 * @param value the new value of the '<em>Primary Key</em>' containment reference.
 	 * @see #getPrimaryKey()
 	 * @generated
 	 */

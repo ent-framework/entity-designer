@@ -19,6 +19,12 @@ public class ModelObjectUtils {
             TreeItem<EModelObject> moduleItem = new TreeItem<>(module);
             for (EEntityObject entity : module.getEntities()) {
                 TreeItem<EModelObject> entityItem = new TreeItem<>(entity);
+
+                if (entity.getPrimaryKey()!=null) {
+                    TreeItem<EModelObject> primaryKey = new TreeItem<>(entity.getPrimaryKey());
+                    entityItem.getChildren().add(primaryKey);
+                }
+
                 for (EFieldObject field : entity.getFields()) {
                     TreeItem<EModelObject> fieldItem = new TreeItem<>(field);
                     entityItem.getChildren().add(fieldItem);

@@ -31,7 +31,7 @@ public class EModelObjectTreeCell extends TreeCell<EModelObject> {
             }
 
             setGraphic(icon);
-            setContextMenu(createContextMenu(item));
+            setContextMenu(TreeContextMenuFactory.createContextMenu(item, getTreeItem()));
         }
     }
 
@@ -83,23 +83,5 @@ public class EModelObjectTreeCell extends TreeCell<EModelObject> {
     @Override
     protected void layoutChildren() {
         super.layoutChildren();
-    }
-
-    private ContextMenu createContextMenu(EModelObject item) {
-        ContextMenu contextMenu = new ContextMenu();
-        if (item instanceof EEntityObject entity) {
-            MenuItem menuItem = new MenuItem("Add Field");
-            menuItem.setOnAction(event -> {
-                EFieldObject field = EntityFactory.eINSTANCE.createEFieldObject();
-                field.setId(IdGenerator.generateId());
-                field.setName("change later");
-                EventCommands.addField(ResourceUtils.findModel(item), entity, field);
-                //添加到当前节点
-                TreeItem<EModelObject> treeItem = new TreeItem<>(field);
-                getTreeItem().getChildren().add(treeItem);
-            });
-            contextMenu.getItems().add(menuItem);
-        }
-        return contextMenu;
     }
 }

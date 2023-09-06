@@ -128,7 +128,7 @@ public class EEntityObjectImpl extends MinimalEObjectImpl.Container implements E
 	protected String comment = COMMENT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPrimaryKey() <em>Primary Key</em>}' reference.
+	 * The cached value of the '{@link #getPrimaryKey() <em>Primary Key</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPrimaryKey()
@@ -285,14 +285,6 @@ public class EEntityObjectImpl extends MinimalEObjectImpl.Container implements E
 	 */
 	@Override
 	public EFieldObject getPrimaryKey() {
-		if (primaryKey != null && primaryKey.eIsProxy()) {
-			InternalEObject oldPrimaryKey = (InternalEObject)primaryKey;
-			primaryKey = (EFieldObject)eResolveProxy(oldPrimaryKey);
-			if (primaryKey != oldPrimaryKey) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityPackage.EENTITY_OBJECT__PRIMARY_KEY, oldPrimaryKey, primaryKey));
-			}
-		}
 		return primaryKey;
 	}
 
@@ -301,8 +293,14 @@ public class EEntityObjectImpl extends MinimalEObjectImpl.Container implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EFieldObject basicGetPrimaryKey() {
-		return primaryKey;
+	public NotificationChain basicSetPrimaryKey(EFieldObject newPrimaryKey, NotificationChain msgs) {
+		EFieldObject oldPrimaryKey = primaryKey;
+		primaryKey = newPrimaryKey;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EntityPackage.EENTITY_OBJECT__PRIMARY_KEY, oldPrimaryKey, newPrimaryKey);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -312,10 +310,17 @@ public class EEntityObjectImpl extends MinimalEObjectImpl.Container implements E
 	 */
 	@Override
 	public void setPrimaryKey(EFieldObject newPrimaryKey) {
-		EFieldObject oldPrimaryKey = primaryKey;
-		primaryKey = newPrimaryKey;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityPackage.EENTITY_OBJECT__PRIMARY_KEY, oldPrimaryKey, primaryKey));
+		if (newPrimaryKey != primaryKey) {
+			NotificationChain msgs = null;
+			if (primaryKey != null)
+				msgs = ((InternalEObject)primaryKey).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EntityPackage.EENTITY_OBJECT__PRIMARY_KEY, null, msgs);
+			if (newPrimaryKey != null)
+				msgs = ((InternalEObject)newPrimaryKey).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EntityPackage.EENTITY_OBJECT__PRIMARY_KEY, null, msgs);
+			msgs = basicSetPrimaryKey(newPrimaryKey, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityPackage.EENTITY_OBJECT__PRIMARY_KEY, newPrimaryKey, newPrimaryKey));
 	}
 
 	/**
@@ -392,6 +397,8 @@ public class EEntityObjectImpl extends MinimalEObjectImpl.Container implements E
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case EntityPackage.EENTITY_OBJECT__PRIMARY_KEY:
+				return basicSetPrimaryKey(null, msgs);
 			case EntityPackage.EENTITY_OBJECT__FIELDS:
 				return ((InternalEList<?>)getFields()).basicRemove(otherEnd, msgs);
 			case EntityPackage.EENTITY_OBJECT__PROPERTIES:
@@ -417,8 +424,7 @@ public class EEntityObjectImpl extends MinimalEObjectImpl.Container implements E
 			case EntityPackage.EENTITY_OBJECT__COMMENT:
 				return getComment();
 			case EntityPackage.EENTITY_OBJECT__PRIMARY_KEY:
-				if (resolve) return getPrimaryKey();
-				return basicGetPrimaryKey();
+				return getPrimaryKey();
 			case EntityPackage.EENTITY_OBJECT__TABLE:
 				if (resolve) return getTable();
 				return basicGetTable();

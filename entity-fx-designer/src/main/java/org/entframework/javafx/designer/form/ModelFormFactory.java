@@ -5,6 +5,7 @@
 package org.entframework.javafx.designer.form;
 
 import org.entframework.javafx.designer.entitydesigner.model.EEntityObject;
+import org.entframework.javafx.designer.entitydesigner.model.EFieldObject;
 import org.entframework.javafx.designer.entitydesigner.model.EModelObject;
 import org.entframework.javafx.designer.entitydesigner.model.EModuleObject;
 
@@ -16,6 +17,10 @@ public final class ModelFormFactory {
         }
         if (object instanceof EModuleObject modelObject) {
             return new ModuleForm(modelObject);
+        }
+
+        if (object instanceof EFieldObject fieldObject) {
+            return new FieldForm(fieldObject);
         }
 
         return null;

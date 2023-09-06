@@ -47,7 +47,7 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.github.eckig.grapheditor</groupId>
+            <groupId>org.entframework.designer</groupId>
             <artifactId>grapheditor-core</artifactId>
             <version>19.0.0</version>
         </dependency>
@@ -159,11 +159,7 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.openjfx</groupId>
-                    <artifactId>javafx-graphics</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.openjfx</groupId>
-                    <artifactId>javafx-base</artifactId>
+                    <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
