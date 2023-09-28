@@ -5,6 +5,7 @@ package io.github.eckig.grapheditor.core.view;
 
 import io.github.eckig.grapheditor.GraphEditor;
 import io.github.eckig.grapheditor.model.GModel;
+import io.github.eckig.grapheditor.model.GNode;
 import io.github.eckig.grapheditor.window.AutoScrollingWindow;
 import io.github.eckig.grapheditor.window.GraphEditorMinimap;
 import javafx.beans.value.ChangeListener;
@@ -132,6 +133,17 @@ public class GraphEditorContainer extends AutoScrollingWindow {
 
         if (getChildren().contains(minimap)) {
             minimap.relocate(getWidth() - (minimap.getWidth() + MINIMAP_INDENT), MINIMAP_INDENT);
+        }
+    }
+
+    public void select(GNode node) {
+        // 计算当前可见区域坐标
+        double minX = getContentX();
+        double maxX = minX + getWidth();
+        double minY = getContentY();
+        double maxY = minY + getHeight();
+        if (!(node.getX() > minX && node.getX() < maxX && node.getY() > minY && node.getY() < maxY)) {
+            panTo(node.getX(), node.getY());
         }
     }
 }

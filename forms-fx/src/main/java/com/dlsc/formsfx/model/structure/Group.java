@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.structure;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,7 +48,7 @@ public class Group {
     protected final List<Element> elements = new ArrayList<>();
     /**
      * - SPACING is used to set the spacing of the section as well as the
-     *   spacing for vertical/horizontal gaps between controls.
+     * spacing for vertical/horizontal gaps between controls.
      */
     private final int SPACING = 10;
     private Boolean fireChangeImmediately;
@@ -67,17 +67,15 @@ public class Group {
      */
     protected TranslationService translationService;
 
-    private final Map<EventType<GroupEvent>,List<EventHandler<? super GroupEvent>>> eventHandlers = new ConcurrentHashMap<>();
+    private final Map<EventType<GroupEvent>, List<EventHandler<? super GroupEvent>>> eventHandlers = new ConcurrentHashMap<>();
 
     /**
      * Internal constructor for the {@code Group} class. To create new
      * groups, see the static factory method in this class.
      *
+     * @param elements A varargs list of elements that are contained in this
+     *                 group.
      * @see Group::of
-     *
-     * @param elements
-     *              A varargs list of elements that are contained in this
-     *              group.
      */
     protected Group(Element... elements) {
         Collections.addAll(this.elements, elements);
@@ -86,17 +84,17 @@ public class Group {
         // accordingly.
 
         this.elements.stream()
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .forEach(f -> f.changedProperty().addListener((observable, oldValue, newValue) -> setChangedProperty()));
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .forEach(f -> f.changedProperty().addListener((observable, oldValue, newValue) -> setChangedProperty()));
 
         // If any of the elements are marked as invalid, the group is updated
         // accordingly.
 
         this.elements.stream()
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .forEach(f -> f.validProperty().addListener((observable, oldValue, newValue) -> setValidProperty()));
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .forEach(f -> f.validProperty().addListener((observable, oldValue, newValue) -> setValidProperty()));
 
         setValidProperty();
         setChangedProperty();
@@ -105,9 +103,7 @@ public class Group {
     /**
      * Creates a new group containing the given elements.
      *
-     * @param elements
-     *              The elements to be included in the group.
-     *
+     * @param elements The elements to be included in the group.
      * @return Returns a new {@code Group}.
      */
     public static Group of(Element... elements) {
@@ -119,10 +115,8 @@ public class Group {
      * translation has been added to the form. Also applies the translation
      * to all contained elements.
      *
+     * @param newValue The new service to use for translating translatable values.
      * @see Field::translate
-     *
-     * @param newValue
-     *              The new service to use for translating translatable values.
      */
     protected void translate(TranslationService newValue) {
         translationService = newValue;
@@ -132,13 +126,14 @@ public class Group {
         }
 
         elements.stream()
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .forEach(f -> f.translate(translationService));
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .forEach(f -> f.translate(translationService));
     }
 
     /**
      * Persists the values for all contained elements.
+     *
      * @see Field::persist
      */
     public void persist() {
@@ -147,15 +142,16 @@ public class Group {
         }
 
         elements.stream()
-            .filter(e -> e instanceof FormElement)
-            .map(e -> (FormElement) e)
-            .forEach(FormElement::persist);
+                .filter(e -> e instanceof FormElement)
+                .map(e -> (FormElement) e)
+                .forEach(FormElement::persist);
 
         fireEvent(GroupEvent.groupPersistedEvent(this));
     }
 
     /**
      * Resets the values for all contained elements.
+     *
      * @see Field::reset
      */
     public void reset() {
@@ -164,9 +160,9 @@ public class Group {
         }
 
         elements.stream()
-            .filter(e -> e instanceof FormElement)
-            .map(e -> (FormElement) e)
-            .forEach(FormElement::reset);
+                .filter(e -> e instanceof FormElement)
+                .map(e -> (FormElement) e)
+                .forEach(FormElement::reset);
     }
 
     /**
@@ -175,9 +171,9 @@ public class Group {
      */
     private void setChangedProperty() {
         changed.setValue(elements.stream()
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .anyMatch(Field::hasChanged));
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .anyMatch(Field::hasChanged));
     }
 
     /**
@@ -186,9 +182,9 @@ public class Group {
      */
     private void setValidProperty() {
         valid.setValue(elements.stream()
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .allMatch(Field::isValid));
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .allMatch(Field::isValid));
     }
 
     public List<Element> getElements() {
@@ -222,7 +218,6 @@ public class Group {
      *
      * @param eventType    the type of the events to receive by the handler
      * @param eventHandler the handler to register
-     *
      * @throws NullPointerException if either event type or handler are {@code null}.
      */
     public Group addEventHandler(EventType<GroupEvent> eventType, EventHandler<? super GroupEvent> eventHandler) {
@@ -246,7 +241,6 @@ public class Group {
      *
      * @param eventType    the event type from which to unregister
      * @param eventHandler the handler to unregister
-     *
      * @throws NullPointerException if either event type or handler are {@code null}.
      */
     public Group removeEventHandler(EventType<GroupEvent> eventType, EventHandler<? super GroupEvent> eventHandler) {

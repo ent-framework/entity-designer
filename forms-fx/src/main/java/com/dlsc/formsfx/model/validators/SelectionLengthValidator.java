@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.validators;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,17 +38,11 @@ public class SelectionLengthValidator<E> extends CustomValidator<ObservableList<
     /**
      * Creates an SelectionLengthValidator with given lower and upper bounds.
      *
-     * @param min
-     *              The lower bound for the validation.
-     * @param max
-     *              The upper bound for the validation.
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
-     * @throws IllegalArgumentException
-     *              Thrown if the minimum is a negative number.
-     *
+     * @param min          The lower bound for the validation.
+     * @param max          The upper bound for the validation.
+     * @param errorMessage The error message that is returned if the validation fails.
      * @return Returns a new SelectionLengthValidator.
+     * @throws IllegalArgumentException Thrown if the minimum is a negative number.
      */
     public static <T> SelectionLengthValidator<T> between(int min, int max, String errorMessage) {
         if (min < 0) {
@@ -63,15 +57,10 @@ public class SelectionLengthValidator<E> extends CustomValidator<ObservableList<
     /**
      * Creates an SelectionLengthValidator with a given lower bound.
      *
-     * @param min
-     *              The lower bound for the validation.
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
-     * @throws IllegalArgumentException
-     *              Thrown if the minimum is a negative number.
-     *
+     * @param min          The lower bound for the validation.
+     * @param errorMessage The error message that is returned if the validation fails.
      * @return Returns a new SelectionLengthValidator.
+     * @throws IllegalArgumentException Thrown if the minimum is a negative number.
      */
     public static <T> SelectionLengthValidator<T> atLeast(int min, String errorMessage) {
         if (min < 0) {
@@ -84,11 +73,8 @@ public class SelectionLengthValidator<E> extends CustomValidator<ObservableList<
     /**
      * Creates an SelectionLengthValidator with a given upper bound.
      *
-     * @param max
-     *              The upper bound for the validation.
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
+     * @param max          The upper bound for the validation.
+     * @param errorMessage The error message that is returned if the validation fails.
      * @return Returns a new SelectionLengthValidator.
      */
     public static <T> SelectionLengthValidator<T> upTo(int max, String errorMessage) {
@@ -99,11 +85,8 @@ public class SelectionLengthValidator<E> extends CustomValidator<ObservableList<
      * Creates a SelectionLengthValidator with a given lower and upper bound,
      * which are equal.
      *
-     * @param value
-     *              The lower and upper bound for the validation.
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
+     * @param value        The lower and upper bound for the validation.
+     * @param errorMessage The error message that is returned if the validation fails.
      * @return Returns a new SelectionLengthValidator.
      */
     public static <T> SelectionLengthValidator<T> exactly(int value, String errorMessage) {

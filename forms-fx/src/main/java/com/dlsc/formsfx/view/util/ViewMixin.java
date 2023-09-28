@@ -9,9 +9,9 @@ package com.dlsc.formsfx.view.util;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,7 +52,8 @@ public interface ViewMixin {
     /**
      * This method can be used to initialize the parts of the same class.
      */
-    default void initializeSelf() {}
+    default void initializeSelf() {
+    }
 
     /**
      * This method is used to initializes all the properties of a class.
@@ -67,23 +68,25 @@ public interface ViewMixin {
     /**
      * This method is used to set up event handlers.
      */
-    default void setupEventHandlers() {}
+    default void setupEventHandlers() {
+    }
 
     /**
      * This method is used to set up value change listeners.
      */
-    default void setupValueChangedListeners() {}
+    default void setupValueChangedListeners() {
+    }
 
     /**
      * This method is used to configure the bindings of the properties.
      */
-    default void setupBindings() {}
+    default void setupBindings() {
+    }
 
     /**
      * This method adds the stylesheet files to the getStylesheets method.
      *
-     * @param stylesheetFile
-     *              List of stylesheet files
+     * @param stylesheetFile List of stylesheet files
      */
     default void addStylesheetFiles(String... stylesheetFile) {
         for (String file : stylesheetFile) {

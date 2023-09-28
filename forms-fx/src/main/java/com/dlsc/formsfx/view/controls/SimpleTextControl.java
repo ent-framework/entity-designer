@@ -9,9 +9,9 @@ package com.dlsc.formsfx.view.controls;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,19 +22,13 @@ package com.dlsc.formsfx.view.controls;
 
 import com.dlsc.formsfx.model.structure.StringField;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -56,7 +50,7 @@ public class SimpleTextControl extends SimpleControl<StringField> {
 
     /**
      * - The fieldLabel is the container that displays the label property of
-     *   the field.
+     * the field.
      * - The editableField allows users to modify the field's value.
      * - The readOnlyLabel displays the field's value if it is not editable.
      */
@@ -122,31 +116,6 @@ public class SimpleTextControl extends SimpleControl<StringField> {
         add(fieldLabel, 0, 0, labelSpan, 1);
         add(stack, labelSpan, 0, 12 - labelSpan, 1);
 
-        /*
-        if (columns < 3) {
-            int rowIndex = 0;
-            add(fieldLabel, 0, rowIndex++, columns, 1);
-            if (labelDescription != null) {
-                GridPane.setValignment(labelDescription, VPos.TOP);
-                add(labelDescription, 0, rowIndex++, columns, 1);
-            }
-            add(stack, 0, rowIndex++, columns, 1);
-            if (valueDescription != null) {
-                GridPane.setValignment(valueDescription, VPos.TOP);
-                add(valueDescription, 0, rowIndex, columns, 1);
-            }
-        } else {
-            add(fieldLabel, 0, 0, 2, 1);
-            if (labelDescription != null) {
-                GridPane.setValignment(labelDescription, VPos.TOP);
-                add(labelDescription, 0, 1, 2, 1);
-            }
-            add(stack, 2, 0, columns - 2, 1);
-            if (valueDescription != null) {
-                GridPane.setValignment(valueDescription, VPos.TOP);
-                add(valueDescription, 2, 1, columns - 2, 1);
-            }
-        }*/
     }
 
     /**
@@ -157,9 +126,9 @@ public class SimpleTextControl extends SimpleControl<StringField> {
         super.setupBindings();
 
         editableArea.visibleProperty().bind(Bindings.and(field.editableProperty(),
-                                                        field.multilineProperty()));
+                field.multilineProperty()));
         editableField.visibleProperty().bind(Bindings.and(field.editableProperty(),
-                                                        field.multilineProperty().not()));
+                field.multilineProperty().not()));
         readOnlyLabel.visibleProperty().bind(field.editableProperty().not());
 
         editableField.textProperty().bindBidirectional(field.userInputProperty());
@@ -190,7 +159,7 @@ public class SimpleTextControl extends SimpleControl<StringField> {
         editableField.focusedProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(editableField));
         editableArea.focusedProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(editableArea));
 
-        if (field.isFireChangeImmediately()!=null && field.isFireChangeImmediately()) {
+        if (field.isFireChangeImmediately() != null && field.isFireChangeImmediately()) {
             editableField.focusedProperty().addListener((observable, oldValue, newValue) -> {
                 if (oldValue && !newValue) {
                     field.persist();

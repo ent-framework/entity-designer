@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.structure;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,25 +27,19 @@ import com.dlsc.formsfx.view.controls.SimpleControl;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -53,7 +47,7 @@ import java.util.stream.Collectors;
  * This class provides the base implementation for a FormsFX field. It is not
  * meant to be used directly, but instead acts as a base for concrete
  * implementations.
- *
+ * <p>
  * A field is the smallest unit of the form. It contains only the value and
  * relevant information.
  *
@@ -65,7 +59,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * The label acts as a description for the field. It is always visible to
      * the user and tells them what should be entered into the field.
-     *
+     * <p>
      * This property is translatable if a {@link TranslationService} is set on
      * the containing form.
      */
@@ -75,7 +69,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * The tooltip is an extension of the label. It contains additional
      * information about the contained data that is only contextually visible.
-     *
+     * <p>
      * This property is translatable if a {@link TranslationService} is set on
      * the containing form.
      */
@@ -85,7 +79,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * The placeholder is only visible in an empty field. It provides a hint to
      * the user about what should be entered into the field.
-     *
+     * <p>
      * This property is translatable if a {@link TranslationService} is set on
      * the containing form.
      */
@@ -117,7 +111,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * The results of the field's validation is stored in this property. After
      * every validation, the results are updated and reflected in this property.
-     *
+     * <p>
      * This property is translatable if a {@link TranslationService} is set on
      * the containing form.
      */
@@ -126,7 +120,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
 
     /**
      * Additional descriptions for the field's label and value are stored in these properties.
-     *
+     * <p>
      * These properties are translatable if a {@link TranslationService} is set on
      * the containing form.
      */
@@ -147,7 +141,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     protected SimpleControl<F> renderer;
     protected Supplier<SimpleControl<F>> rendererSupplier;
 
-    protected final Map<EventType<FieldEvent>,List<EventHandler<? super FieldEvent>>> eventHandlers = new ConcurrentHashMap<>();
+    protected final Map<EventType<FieldEvent>, List<EventHandler<? super FieldEvent>>> eventHandlers = new ConcurrentHashMap<>();
 
     /**
      * With the continuous binding mode, values are always directly persisted
@@ -199,9 +193,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link PasswordField} with the given default value.
      *
-     * @param defaultValue
-     *              The initial value and persistent value of the field.
-     *
+     * @param defaultValue The initial value and persistent value of the field.
      * @return Returns a new {@link PasswordField}.
      */
     public static PasswordField ofPasswordType(String defaultValue) {
@@ -211,9 +203,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link PasswordField} with the given property.
      *
-     * @param binding
-     *          The property from the model to be bound with.
-     *
+     * @param binding The property from the model to be bound with.
      * @return Returns a new {@link PasswordField}.
      */
     public static PasswordField ofPasswordType(StringProperty binding) {
@@ -223,9 +213,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link StringField} with the given default value.
      *
-     * @param defaultValue
-     *              The initial value and persistent value of the field.
-     *
+     * @param defaultValue The initial value and persistent value of the field.
      * @return Returns a new {@link StringField}.
      */
     public static StringField ofStringType(String defaultValue) {
@@ -235,9 +223,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link StringField} with the given property.
      *
-     * @param binding
-     *          The property from the model to be bound with.
-     *
+     * @param binding The property from the model to be bound with.
      * @return Returns a new {@link StringField}.
      */
     public static StringField ofStringType(StringProperty binding) {
@@ -247,9 +233,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link DoubleField} with the given default value.
      *
-     * @param defaultValue
-     *              The initial value and persistent value of the field.
-     *
+     * @param defaultValue The initial value and persistent value of the field.
      * @return Returns a new {@link DoubleField}.
      */
     public static DoubleField ofDoubleType(double defaultValue) {
@@ -259,9 +243,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link DoubleField} with the given property.
      *
-     * @param binding
-     *          The property from the model to be bound with.
-     *
+     * @param binding The property from the model to be bound with.
      * @return Returns a new {@link DoubleField}.
      */
     public static DoubleField ofDoubleType(DoubleProperty binding) {
@@ -271,9 +253,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link IntegerField} with the given default value.
      *
-     * @param defaultValue
-     *              The initial value and persistent value of the field.
-     *
+     * @param defaultValue The initial value and persistent value of the field.
      * @return Returns a new {@link IntegerField}.
      */
     public static IntegerField ofIntegerType(int defaultValue) {
@@ -283,9 +263,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link IntegerField} with the given property.
      *
-     * @param binding
-     *          The property from the model to be bound with.
-     *
+     * @param binding The property from the model to be bound with.
      * @return Returns a new {@link IntegerField}.
      */
     public static IntegerField ofIntegerType(IntegerProperty binding) {
@@ -295,9 +273,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link BooleanField} with the given default value.
      *
-     * @param defaultValue
-     *              The initial value and persistent value of the field.
-     *
+     * @param defaultValue The initial value and persistent value of the field.
      * @return Returns a new {@link BooleanField}.
      */
     public static BooleanField ofBooleanType(boolean defaultValue) {
@@ -307,9 +283,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Creates a new {@link BooleanField} with the given property.
      *
-     * @param binding
-     *          The property from the model to be bound with.
-     *
+     * @param binding The property from the model to be bound with.
      * @return Returns a new {@link BooleanField}.
      */
     public static BooleanField ofBooleanType(BooleanProperty binding) {
@@ -320,11 +294,8 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Creates a new {@link MultiSelectionField} with the given items and a
      * pre-defined selection.
      *
-     * @param items
-     *              The list of available items on the field.
-     * @param selection
-     *              The pre-defined indices of the selected items.
-     *
+     * @param items     The list of available items on the field.
+     * @param selection The pre-defined indices of the selected items.
      * @return Returns a new {@link MultiSelectionField}.
      */
     public static <T> MultiSelectionField<T> ofMultiSelectionType(List<T> items, List<Integer> selection) {
@@ -335,9 +306,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Creates a new {@link MultiSelectionField} with the given items and no
      * pre-defined selection.
      *
-     * @param items
-     *              The list of available items on the field.
-     *
+     * @param items The list of available items on the field.
      * @return Returns a new {@link MultiSelectionField}.
      */
     public static <T> MultiSelectionField<T> ofMultiSelectionType(List<T> items) {
@@ -348,12 +317,8 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Creates a new {@link MultiSelectionField} with the given properties for
      * items and selection.
      *
-     * @param itemsBinding
-     *          The items property to be bound with.
-     *
-     * @param selectionBinding
-     *          The selection property to be bound with.
-     *
+     * @param itemsBinding     The items property to be bound with.
+     * @param selectionBinding The selection property to be bound with.
      * @return Returns a new {@link MultiSelectionField}.
      */
     public static <T> MultiSelectionField<T> ofMultiSelectionType(ListProperty<T> itemsBinding, ListProperty<T> selectionBinding) {
@@ -364,11 +329,8 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Creates a new {@link SingleSelectionField} with the given items and a
      * pre-defined selection.
      *
-     * @param items
-     *              The list of available items on the field.
-     * @param selection
-     *              The pre-defined index of the selected item.
-     *
+     * @param items     The list of available items on the field.
+     * @param selection The pre-defined index of the selected item.
      * @return Returns a new {@link SingleSelectionField}.
      */
     public static <T> SingleSelectionField<T> ofSingleSelectionType(List<T> items, int selection) {
@@ -379,9 +341,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Creates a new {@link SingleSelectionField} with the given items and no
      * pre-defined selection.
      *
-     * @param items
-     *              The list of available items on the field.
-     *
+     * @param items The list of available items on the field.
      * @return Returns a new {@link SingleSelectionField}.
      */
     public static <T> SingleSelectionField<T> ofSingleSelectionType(List<T> items) {
@@ -392,12 +352,8 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Creates a new {@link SingleSelectionField} with the given properties for
      * items and selection.
      *
-     * @param itemsBinding
-     *          The items property to be bound with.
-     *
-     * @param selectionBinding
-     *          The selection property to be bound with.
-     *
+     * @param itemsBinding     The items property to be bound with.
+     * @param selectionBinding The selection property to be bound with.
      * @return Returns a new {@link SingleSelectionField}.
      */
     public static <T> SingleSelectionField<T> ofSingleSelectionType(ListProperty<T> itemsBinding, ObjectProperty<T> selectionBinding) {
@@ -428,9 +384,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Sets the required property to for the current field without providing an
      * error message.
      *
-     * @param newValue
-     *              The new state of the required property.
-     *
+     * @param newValue The new state of the required property.
      * @return Returns the current field to allow for chaining.
      */
     public F required(boolean newValue) {
@@ -443,9 +397,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the required property to true for the current field.
      *
-     * @param errorMessage
-     *              The error message if the field is not filled in.
-     *
+     * @param errorMessage The error message if the field is not filled in.
      * @return Returns the current field to allow for chaining.
      */
     public F required(String errorMessage) {
@@ -465,9 +417,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the editable property of the current field.
      *
-     * @param newValue
-     *              The new value for the editable property.
-     *
+     * @param newValue The new value for the editable property.
      * @return Returns the current field to allow for chaining.
      */
     public F editable(boolean newValue) {
@@ -478,13 +428,10 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the label property of the current field.
      *
-     * @param newValue
-     *              The new value for the label property. This can be the label
-     *              itself or a key that is then used for translation.
-     *
-     * @see TranslationService
-     *
+     * @param newValue The new value for the label property. This can be the label
+     *                 itself or a key that is then used for translation.
      * @return Returns the current field to allow for chaining.
+     * @see TranslationService
      */
     public F label(String newValue) {
         if (isI18N()) {
@@ -499,10 +446,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the label description property of the current field.
      *
-     * @param newValue
-     *              The new value for the label description property.
-     *
-     *
+     * @param newValue The new value for the label description property.
      * @return Returns the current field to allow for chaining.
      */
     public F labelDescription(Node newValue) {
@@ -517,15 +461,12 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the label description property of the current field.
      *
-     * @param newValue
-     *              The new value for the label description property,
-     *              wrapped with a {@code Text}.
-     *
-     *
+     * @param newValue The new value for the label description property,
+     *                 wrapped with a {@code Text}.
      * @return Returns the current field to allow for chaining.
      */
     public F labelDescription(String newValue) {
-        if(isI18N()) {
+        if (isI18N()) {
             labelDescriptionKey.set(newValue);
         } else if (newValue != null) {
             labelDescription = asLabel(newValue, LABEL_DESCRIPTION_STYLE_CLASS);
@@ -537,10 +478,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the value description property of the current field.
      *
-     * @param newValue
-     *              The new value for the field description property.
-     *
-     *
+     * @param newValue The new value for the field description property.
      * @return Returns the current field to allow for chaining.
      */
     public F valueDescription(Node newValue) {
@@ -555,15 +493,12 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the value description property of the current field.
      *
-     * @param newValue
-     *              The new value for the field description property,
-     *              wrapped with a {@code Text}.
-     *
-     *
+     * @param newValue The new value for the field description property,
+     *                 wrapped with a {@code Text}.
      * @return Returns the current field to allow for chaining.
      */
     public F valueDescription(String newValue) {
-        if(isI18N()) {
+        if (isI18N()) {
             valueDescriptionKey.set(newValue);
         } else if (newValue != null) {
             valueDescription = asLabel(newValue, VALUE_DESCRIPTION_STYLE_CLASS);
@@ -582,13 +517,10 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the tooltip property of the current field.
      *
-     * @param newValue
-     *              The new value for the tooltip property. This can be the
-     *              label itself or a key that is then used for translation.
-     *
-     * @see TranslationService
-     *
+     * @param newValue The new value for the tooltip property. This can be the
+     *                 label itself or a key that is then used for translation.
      * @return Returns the current field to allow for chaining.
+     * @see TranslationService
      */
     public F tooltip(String newValue) {
         if (isI18N()) {
@@ -603,13 +535,10 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the placeholder property of the current field.
      *
-     * @param newValue
-     *              The new value for the placeholder property. This can be the
-     *              label itself or a key that is then used for translation.
-     *
-     * @see TranslationService
-     *
+     * @param newValue The new value for the placeholder property. This can be the
+     *                 label itself or a key that is then used for translation.
      * @return Returns the current field to allow for chaining.
+     * @see TranslationService
      */
     public F placeholder(String newValue) {
         if (isI18N()) {
@@ -624,9 +553,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Sets the control that renders this field.
      *
-     * @param newValue
-     *              The new control to render the field.
-     *
+     * @param newValue The new control to render the field.
      * @return Returns the current field to allow for chaining.
      */
     public F render(SimpleControl<F> newValue) {
@@ -638,9 +565,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Sets the control supplier that renders this field.
      * The supplier is only called when required, i.e., when the GUI is created.
      *
-     * @param newValue
-     *              The new control supplier to render the field.
-     *
+     * @param newValue The new control supplier to render the field.
      * @return Returns the current field to allow for chaining.
      */
     public F render(Supplier<SimpleControl<F>> newValue) {
@@ -652,8 +577,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * Activates or deactivates the {@code bindingModeListener} based on the
      * given {@code BindingMode}.
      *
-     * @param newValue
-     *              The new binding mode for the current field.
+     * @param newValue The new binding mode for the current field.
      */
     public abstract void setBindingMode(BindingMode newValue);
 
@@ -665,8 +589,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      * This internal method is called by the containing section when a new
      * translation has been added to the form.
      *
-     * @param newValue
-     *              The new service to use for translating translatable values.
+     * @param newValue The new service to use for translating translatable values.
      */
     public void translate(TranslationService newValue) {
         translationService = newValue;
@@ -691,10 +614,8 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Updates a displayable field property to include translated text.
      *
-     * @param displayProperty
-     *              The property that is displayed to the user.
-     * @param keyProperty
-     *              The internal property that holds the translation key.
+     * @param displayProperty The property that is displayed to the user.
+     * @param keyProperty     The internal property that holds the translation key.
      */
     protected void updateElement(StringProperty displayProperty, StringProperty keyProperty) {
 
@@ -713,10 +634,8 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
     /**
      * Updates a displayable field property to include translated text.
      *
-     * @param node
-     *              The property that is displayed to the user.
-     * @param keyProperty
-     *              The internal property that holds the translation key.
+     * @param node        The property that is displayed to the user.
+     * @param keyProperty The internal property that holds the translation key.
      */
     void updateElement(Node node, StringProperty keyProperty) {
 
@@ -831,7 +750,6 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      *
      * @param eventType    the type of the events to receive by the handler
      * @param eventHandler the handler to register
-     *
      * @throws NullPointerException if either event type or handler are {@code null}.
      */
     public Field addEventHandler(EventType<FieldEvent> eventType, EventHandler<? super FieldEvent> eventHandler) {
@@ -855,7 +773,6 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
      *
      * @param eventType    the event type from which to unregister
      * @param eventHandler the handler to unregister
-     *
      * @throws NullPointerException if either event type or handler are {@code null}.
      */
     public Field removeEventHandler(EventType<FieldEvent> eventType, EventHandler<? super FieldEvent> eventHandler) {
@@ -885,7 +802,7 @@ public abstract class Field<F extends Field<F>> extends Element<F> implements Fo
             }
         }
     }
-  
+
     public Node getLabelDescription() {
         return labelDescription;
     }

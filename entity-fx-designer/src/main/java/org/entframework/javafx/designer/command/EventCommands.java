@@ -33,7 +33,7 @@ import java.util.Objects;
 public class EventCommands {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventCommands.class);
 
-    public static void addNode(GModel model, GNode node, EPersistenceObject persistence, EModuleObject module, EEntityObject entity) {
+    public static boolean addNode(GModel model, GNode node, EPersistenceObject persistence, EModuleObject module, EEntityObject entity) {
         final EditingDomain editingDomain = getEditingDomain(model);
         if (editingDomain != null) {
             CompoundCommand command = new CompoundCommand();
@@ -51,19 +51,23 @@ public class EventCommands {
             if (command.canExecute()) {
                 editingDomain.getCommandStack().execute(command);
                 DefaultEventBus.getInstance().publish(new NodeEvent(model, node, NodeEvent.EventType.ADD));
+                return true;
             }
         }
+        return false;
     }
 
-    public static void addField(GModel model, EEntityObject entity, EFieldObject field) {
+    public static boolean addField(GModel model, EEntityObject entity, EFieldObject field) {
         final EditingDomain editingDomain = getEditingDomain(model);
         if (editingDomain != null) {
             Command command = AddCommand.create(editingDomain, entity, EntityPackage.Literals.EENTITY_OBJECT__FIELDS, field);
             if (command.canExecute()) {
                 command.execute();
                 DefaultEventBus.getInstance().publish(new EntityEvent(entity));
+                return true;
             }
         }
+        return false;
     }
 
     public static void removeNode(GModel model, GNode node) {

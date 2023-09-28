@@ -9,9 +9,9 @@ package com.dlsc.formsfx.view.controls;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,11 +24,9 @@ import com.dlsc.formsfx.model.structure.PasswordField;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -51,7 +49,7 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
 
     /**
      * - The fieldLabel is the container that displays the label property of
-     *   the field.
+     * the field.
      * - The editableField allows users to modify the field's value.
      * - The readOnlyLabel displays the field's value if it is not editable.
      */
@@ -144,7 +142,9 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
     }
 
     protected String obfuscate(String input) {
-        if (input == null) { return ""; }
+        if (input == null) {
+            return "";
+        }
         int length = input.length();
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < length; i++) {

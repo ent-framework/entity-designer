@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.structure;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,12 +23,7 @@ package com.dlsc.formsfx.model.structure;
 import com.dlsc.formsfx.model.event.FormEvent;
 import com.dlsc.formsfx.model.util.BindingMode;
 import com.dlsc.formsfx.model.util.TranslationService;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 
@@ -54,7 +49,7 @@ public class Form {
 
     /**
      * The title acts as a description for the form.
-     *
+     * <p>
      * This property is translatable if a {@link TranslationService} is set.
      */
     protected final StringProperty title = new SimpleStringProperty("");
@@ -78,17 +73,15 @@ public class Form {
     protected final ObjectProperty<TranslationService> translationService = new SimpleObjectProperty<>();
     protected final Runnable localeChangeListener = this::translate;
 
-    private final Map<EventType<FormEvent>,List<EventHandler<? super FormEvent>>> eventHandlers = new ConcurrentHashMap<>();
+    private final Map<EventType<FormEvent>, List<EventHandler<? super FormEvent>>> eventHandlers = new ConcurrentHashMap<>();
 
     /**
      * Internal constructor for the {@code Form} class. To create new
      * forms, see the static factory method in this class.
      *
+     * @param groups A varargs list of groups that are contained in this
+     *               form.
      * @see Form::of
-     *
-     * @param groups
-     *              A varargs list of groups that are contained in this
-     *              form.
      */
     private Form(Group... groups) {
         Collections.addAll(this.groups, groups);
@@ -131,9 +124,7 @@ public class Form {
     /**
      * Creates a new form containing the given sections.
      *
-     * @param sections
-     *              The sections to be included in the form.
-     *
+     * @param sections The sections to be included in the form.
      * @return Returns a new {@code Form}.
      */
     public static Form of(Group... sections) {
@@ -143,13 +134,10 @@ public class Form {
     /**
      * Sets the title property of the current form.
      *
-     * @param newValue
-     *              The new value for the title property. This can be the title
-     *              itself or a key that is then used for translation.
-     *
-     * @see TranslationService
-     *
+     * @param newValue The new value for the title property. This can be the title
+     *                 itself or a key that is then used for translation.
      * @return Returns the current form to allow for chaining.
+     * @see TranslationService
      */
     public Form title(String newValue) {
         if (isI18N()) {
@@ -164,9 +152,7 @@ public class Form {
     /**
      * Sets the translation service property of the current form.
      *
-     * @param newValue
-     *              The new value for the translation service property.
-     *
+     * @param newValue The new value for the translation service property.
      * @return Returns the current form to allow for chaining.
      */
     public Form i18n(TranslationService newValue) {
@@ -183,12 +169,9 @@ public class Form {
     /**
      * Changes the way field values are bound to external properties.
      *
-     * @see BindingMode
-     *
-     * @param newValue
-     *              The new mode for handling external bindings.
-     *
+     * @param newValue The new mode for handling external bindings.
      * @return Returns the current form to allow for chaining.
+     * @see BindingMode
      */
     public Form binding(BindingMode newValue) {
         getFields().forEach(f -> f.setBindingMode(newValue));
@@ -287,11 +270,11 @@ public class Form {
 
     public List<Field> getFields() {
         return groups.stream()
-            .map(Group::getElements)
-            .flatMap(List::stream)
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .collect(Collectors.toList());
+                .map(Group::getElements)
+                .flatMap(List::stream)
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .collect(Collectors.toList());
     }
 
     public boolean hasChanged() {
@@ -337,7 +320,6 @@ public class Form {
      *
      * @param eventType    the type of the events to receive by the handler
      * @param eventHandler the handler to register
-     *
      * @throws NullPointerException if either event type or handler are {@code null}.
      */
     public Form addEventHandler(EventType<FormEvent> eventType, EventHandler<? super FormEvent> eventHandler) {
@@ -361,7 +343,6 @@ public class Form {
      *
      * @param eventType    the event type from which to unregister
      * @param eventHandler the handler to unregister
-     *
      * @throws NullPointerException if either event type or handler are {@code null}.
      */
     public Form removeEventHandler(EventType<FormEvent> eventType, EventHandler<? super FormEvent> eventHandler) {

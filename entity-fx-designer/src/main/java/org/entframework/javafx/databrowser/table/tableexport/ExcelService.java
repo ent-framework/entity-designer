@@ -19,6 +19,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Types;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -156,13 +159,13 @@ public class ExcelService extends Service<Void> {
                 }
                 break;
             case Types.DATE:
-                makeTemporalCell(retVal, (Date) cellObj, "m/d/yy");
+                makeTemporalCell(retVal, cellObj, "m/d/yy");
                 break;
             case Types.TIMESTAMP:
-                makeTemporalCell(retVal, (Date) cellObj, "m/d/yy h:mm");
+                makeTemporalCell(retVal, cellObj, "m/d/yy h:mm");
                 break;
             case Types.TIME:
-                makeTemporalCell(retVal, (Date) cellObj, "h:mm");
+                makeTemporalCell(retVal, cellObj, "h:mm");
                 break;
             case Types.CHAR:
             case Types.VARCHAR:
@@ -176,16 +179,25 @@ public class ExcelService extends Service<Void> {
         }
     }
 
-    private void makeTemporalCell(Cell retVal, Date cellObj, String format) {
+    private void makeTemporalCell(Cell retVal, Object cellObj, String format) {
         CreationHelper creationHelper = _workbook.getCreationHelper();
         CellStyle cellStyle = _workbook.createCellStyle();
         cellStyle.setDataFormat(creationHelper.createDataFormat().getFormat(format));
         retVal.setCellStyle(cellStyle);
 
         if (null != cellObj) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(cellObj);
-            retVal.setCellValue(calendar);
+            if (cellObj instanceof Date dateObj) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateObj);
+                retVal.setCellValue(calendar);
+            } else if (cellObj instanceof LocalDateTime dateTime) {
+                retVal.setCellValue(dateTime);
+            } else if (cellObj instanceof LocalDate date) {
+                retVal.setCellValue(date);
+            } else {
+                throw new RuntimeException("Unknown type");
+            }
+
         }
     }
 

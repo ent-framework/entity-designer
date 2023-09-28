@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.structure;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,7 @@ public class Section extends Group {
     /**
      * The title acts as a description for the group. It is always visible to
      * the user and tells them how the contained elements are grouped.
-     *
+     * <p>
      * This property is translatable if a {@link TranslationService} is set on
      * the containing form.
      */
@@ -70,9 +70,7 @@ public class Section extends Group {
     /**
      * Creates a new section containing the given elements.
      *
-     * @param elements
-     *              The elements to be included in the section.
-     *
+     * @param elements The elements to be included in the section.
      * @return Returns a new {@code Section}.
      */
     public static Section of(Element... elements) {
@@ -82,13 +80,10 @@ public class Section extends Group {
     /**
      * Sets the title property of the current group.
      *
-     * @param newValue
-     *              The new value for the title property. This can be the title
-     *              itself or a key that is then used for translation.
-     *
-     * @see TranslationService
-     *
+     * @param newValue The new value for the title property. This can be the title
+     *                 itself or a key that is then used for translation.
      * @return Returns the current group to allow for chaining.
+     * @see TranslationService
      */
     public Section title(String newValue) {
         if (isI18N()) {
@@ -117,16 +112,15 @@ public class Section extends Group {
         }
 
         elements.stream()
-            .filter(e -> e instanceof Field)
-            .map(e -> (Field) e)
-            .forEach(f -> f.translate(translationService));
+                .filter(e -> e instanceof Field)
+                .map(e -> (Field) e)
+                .forEach(f -> f.translate(translationService));
     }
 
     /**
      * Changes the collapsed state on a section.
      *
-     * @param newValue
-     *              The new value for the collapsed state.
+     * @param newValue The new value for the collapsed state.
      */
     public Section collapse(boolean newValue) {
         collapsed.setValue(newValue);
@@ -152,8 +146,7 @@ public class Section extends Group {
     /**
      * Changes the collapsible state on a section.
      *
-     * @param newValue
-     *              The new value for the collapsible state.
+     * @param newValue The new value for the collapsible state.
      */
     public Section collapsible(boolean newValue) {
         this.collapsible.set(newValue);

@@ -8,6 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * 左侧DockToolbar构建
+ */
 public class DockToolbarBuilder {
 
     private final BorderPane _borderPane;

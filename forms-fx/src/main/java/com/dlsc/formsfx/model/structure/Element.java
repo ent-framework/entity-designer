@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.structure;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,12 +21,7 @@ package com.dlsc.formsfx.model.structure;
  */
 
 import com.dlsc.formsfx.view.util.ColSpan;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -44,12 +39,11 @@ public abstract class Element<E extends Element<E>> {
     protected final IntegerProperty span = new SimpleIntegerProperty(12);
     protected final IntegerProperty labelSpan = new SimpleIntegerProperty(4);
     protected Boolean fireChangeImmediately;
+
     /**
      * Sets the id property of the current field.
      *
-     * @param newValue
-     *              The new value for the id property.
-     *
+     * @param newValue The new value for the id property.
      * @return Returns the current field to allow for chaining.
      */
     public E id(String newValue) {
@@ -60,9 +54,7 @@ public abstract class Element<E extends Element<E>> {
     /**
      * Sets the style classes for the current field.
      *
-     * @param newValue
-     *              The new style classes.
-     *
+     * @param newValue The new style classes.
      * @return Returns the current field to allow for chaining.
      */
     public E styleClass(String... newValue) {
@@ -73,9 +65,7 @@ public abstract class Element<E extends Element<E>> {
     /**
      * Sets the amount of columns the field takes up inside the section grid.
      *
-     * @param newValue
-     *              The new number of columns.
-     *
+     * @param newValue The new number of columns.
      * @return Returns the current field to allow for chaining.
      */
     public E span(int newValue) {
@@ -86,9 +76,7 @@ public abstract class Element<E extends Element<E>> {
     /**
      * Sets the amount of columns the field takes up inside the section grid.
      *
-     * @param newValue
-     *              The new span fraction.
-     *
+     * @param newValue The new span fraction.
      * @return Returns the current field to allow for chaining.
      */
     public E span(ColSpan newValue) {

@@ -12,7 +12,7 @@
 <?import io.github.eckig.grapheditor.core.view.GraphEditorContainer?>
 <?import javafx.geometry.Insets?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.entframework.javafx.designer.DesignerTabCtrl">
     <top>
         <ToolBar>
@@ -154,7 +154,7 @@
                     </VBox.margin>
                 </TreeView>
             </VBox>
-            <AnchorPane fx:id="graphEditorPane" minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="200.0" SplitPane.resizableWithParent="true">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="200.0" SplitPane.resizableWithParent="true">
                 <GraphEditorContainer styleClass="graph-editor-container" fx:id="graphEditorContainer" minWidth="0" minHeight="0" maxWidth="-Infinity" maxHeight="-Infinity"
                                       AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
                 />

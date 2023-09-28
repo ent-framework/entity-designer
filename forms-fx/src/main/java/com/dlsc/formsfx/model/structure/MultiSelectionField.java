@@ -9,9 +9,9 @@ package com.dlsc.formsfx.model.structure;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,15 +25,16 @@ import com.dlsc.formsfx.model.util.BindingMode;
 import com.dlsc.formsfx.model.validators.ValidationResult;
 import com.dlsc.formsfx.model.validators.Validator;
 import com.dlsc.formsfx.view.controls.SimpleListViewControl;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class provides an implementation of a {@link MultiSelectionField}
@@ -60,10 +61,8 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
     /**
      * The constructor of {@code MultiSelectionField}.
      *
-     * @param items
-     *              The property that is used to store the items of the field.
-     * @param selection
-     *              The list of indices of items that are to be selected.
+     * @param items     The property that is used to store the items of the field.
+     * @param selection The list of indices of items that are to be selected.
      */
     protected MultiSelectionField(ListProperty<V> items, List<Integer> selection) {
         super(items);
@@ -107,11 +106,8 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
      * Updates the list of available items to a new list, along with a
      * pre-defined selection.
      *
-     * @param newValue
-     *              The new list of items.
-     * @param newSelection
-     *              The new pre-defined selection.
-     *
+     * @param newValue     The new list of items.
+     * @param newSelection The new pre-defined selection.
      * @return Returns the current field to allow for chaining.
      */
     public MultiSelectionField<V> items(List<V> newValue, List<Integer> newSelection) {
@@ -127,9 +123,7 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
      * Updates the list of available items to a new list, without a
      * pre-defined selection.
      *
-     * @param newValue
-     *              The new list of items.
-     *
+     * @param newValue The new list of items.
      * @return Returns the current field to allow for chaining.
      */
     public MultiSelectionField<V> items(List<V> newValue) {
@@ -140,10 +134,8 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
      * Sets the list of validators for the current field. This overrides all
      * validators that have previously been added.
      *
-     * @param newValue
-     *              The validators that are to be used for validating this
-     *              field.
-     *
+     * @param newValue The validators that are to be used for validating this
+     *                 field.
      * @return Returns the current field to allow for chaining.
      */
     @SafeVarargs
@@ -158,9 +150,7 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
     /**
      * Adds the element at the given index to the current selection.
      *
-     * @param index
-     *              The index of the element to be selected.
-     *
+     * @param index The index of the element to be selected.
      * @return Returns the current field to allow for chaining.
      */
     public MultiSelectionField<V> select(int index) {
@@ -174,9 +164,7 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
     /**
      * Removes the element at the given index from the current selection.
      *
-     * @param index
-     *              The index of the element to be removed.
-     *
+     * @param index The index of the element to be removed.
      * @return Returns the current field to allow for chaining.
      */
     public MultiSelectionField<V> deselect(int index) {
@@ -191,12 +179,8 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
      * Binds the given items and selection property with the corresponding
      * elements.
      *
-     * @param itemsBinding
-     *          The items property to be bound with.
-     *
-     * @param selectionBinding
-     *          The selection property to be bound with.
-     *
+     * @param itemsBinding     The items property to be bound with.
+     * @param selectionBinding The selection property to be bound with.
      * @return Returns the current field to allow for chaining.
      */
     public MultiSelectionField<V> bind(ListProperty<V> itemsBinding, ListProperty<V> selectionBinding) {
@@ -210,12 +194,8 @@ public class MultiSelectionField<V> extends SelectionField<V, MultiSelectionFiel
      * Unbinds the given items and selection property with the corresponding
      * elements.
      *
-     * @param itemsBinding
-     *          The items property to be unbound with.
-     *
-     * @param selectionBinding
-     *          The selection property to be unbound with.
-     *
+     * @param itemsBinding     The items property to be unbound with.
+     * @param selectionBinding The selection property to be unbound with.
      * @return Returns the current field to allow for chaining.
      */
     public MultiSelectionField<V> unbind(ListProperty<V> itemsBinding, ListProperty<V> selectionBinding) {

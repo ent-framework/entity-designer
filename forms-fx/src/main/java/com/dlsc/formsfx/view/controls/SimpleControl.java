@@ -9,9 +9,9 @@ package com.dlsc.formsfx.view.controls;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,6 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
 /**
@@ -94,14 +93,6 @@ public abstract class SimpleControl<F extends Field> extends GridPane implements
     public void layoutParts() {
         setAlignment(Pos.CENTER_LEFT);
 
-//        int columns = field.getSpan();
-//
-//        for (int i = 0; i < columns; i++) {
-//            ColumnConstraints colConst = new ColumnConstraints();
-//            colConst.setPercentWidth(100.0 / columns);
-//            getColumnConstraints().add(colConst);
-//        }
-
         int COLUMN_COUNT = 12;
 
         for (int i = 0; i < COLUMN_COUNT; i++) {
@@ -145,8 +136,7 @@ public abstract class SimpleControl<F extends Field> extends GridPane implements
      * Sets the error message as tooltip for the matching control and shows
      * them below the same control.
      *
-     * @param reference
-     *          The control which gets the tooltip.
+     * @param reference The control which gets the tooltip.
      */
     protected void toggleTooltip(Node reference) {
         this.toggleTooltip(reference, (Control) reference);
@@ -155,10 +145,8 @@ public abstract class SimpleControl<F extends Field> extends GridPane implements
     /**
      * Sets the error message as tooltip for the matching control.
      *
-     * @param below
-     *          The control needed for positioning the tooltip.
-     * @param reference
-     *          The control which gets the tooltip.
+     * @param below     The control needed for positioning the tooltip.
+     * @param reference The control which gets the tooltip.
      */
     protected void toggleTooltip(Node reference, Control below) {
         String fieldTooltip = field.getTooltip();
@@ -185,10 +173,8 @@ public abstract class SimpleControl<F extends Field> extends GridPane implements
     /**
      * Sets the css style for the defined properties.
      *
-     * @param pseudo
-     *              The CSS pseudo class to toggle.
-     * @param newValue
-     *              Determines whether the CSS class should be applied.
+     * @param pseudo   The CSS pseudo class to toggle.
+     * @param newValue Determines whether the CSS class should be applied.
      */
     protected void updateStyle(PseudoClass pseudo, boolean newValue) {
         pseudoClassStateChanged(pseudo, newValue);
@@ -196,6 +182,7 @@ public abstract class SimpleControl<F extends Field> extends GridPane implements
 
     /**
      * Adds a style class to the control.
+     *
      * @param name of the style class to be added to the control
      */
     public void addStyleClass(String name) {
@@ -204,6 +191,7 @@ public abstract class SimpleControl<F extends Field> extends GridPane implements
 
     /**
      * Removes a style class from the control.
+     *
      * @param name of the class to be removed from the control
      */
     public void removeStyleClass(String name) {

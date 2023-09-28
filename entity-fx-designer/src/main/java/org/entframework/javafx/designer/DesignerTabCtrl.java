@@ -75,19 +75,21 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
     };
 
     @FXML
-    public AnchorPane propertyPane;
+    private AnchorPane propertyPane;
     @FXML
-    public AnchorPane graphEditorPane;
+    private TreeView<EModelObject> treeView;
     @FXML
-    public TreeView<EModelObject> treeView;
+    private TextField treeSearchInput;
     @FXML
-    public TextField treeSearchInput;
-    public ToggleButton minimapButton;
-    public BorderPane borderPane;
-    public ToggleButton showGridBtn;
-    public ToggleButton snapToGridBtn;
-    public Button btnUndo;
-    public Button btnRedo;
+    private ToggleButton minimapButton;
+    @FXML
+    private ToggleButton showGridBtn;
+    @FXML
+    private ToggleButton snapToGridBtn;
+    @FXML
+    private Button btnUndo;
+    @FXML
+    private Button btnRedo;
     @FXML
     private GraphEditorContainer graphEditorContainer;
     private EntitySkinController entitySkinController;
@@ -95,6 +97,7 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
     private ModelForm<?> modelForm;
 
     public void initialize() {
+        //初始化属性监听，刷新树
         MultiAttributeFeatureAdapter multiAttributeFeatureAdapter = new MultiAttributeFeatureAdapter(List.of(
                 EntityPackage.Literals.EMODULE_OBJECT__NAME,
                 EntityPackage.Literals.EENTITY_OBJECT__NAME,
@@ -181,6 +184,10 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
         selectNode(modelObject);
     }
 
+    /**
+     * select node
+     * @param modelObject model target
+     */
     private void selectNode(EModelObject modelObject) {
         EEntityObject entity = ModelObjectUtils.getTargetType(EEntityObject.class, modelObject);
         if (entity != null) {
@@ -188,7 +195,7 @@ public class DesignerTabCtrl extends AbstractFxmlCtrl {
             if (node != null) {
                 graphEditor.getSelectionManager().clearSelection();
                 graphEditor.getSelectionManager().select(node);
-                graphEditorContainer.panTo(node.getX(), node.getY());
+                graphEditorContainer.select(node);
             }
         }
     }

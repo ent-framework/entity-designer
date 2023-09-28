@@ -152,12 +152,12 @@ public class SQLTextAreaServices {
         }
 
         caretBounds.begin = caretPosition;
-        while (false == isStatementBegin(sqlTextAreaText, caretBounds.begin)) {
+        while (!isStatementBegin(sqlTextAreaText, caretBounds.begin)) {
             --caretBounds.begin;
         }
 
         caretBounds.end = caretPosition;
-        while (false == isStatementEnd(sqlTextAreaText, caretBounds.end)) {
+        while (!isStatementEnd(sqlTextAreaText, caretBounds.end)) {
             ++caretBounds.end;
         }
         return caretBounds;
@@ -167,7 +167,7 @@ public class SQLTextAreaServices {
         int caretPosition = _sqlTextAreaVirtualScroll.getContent().getCaretPosition();
         String text = _sqlTextAreaVirtualScroll.getContent().getText();
 
-        if (0 == text.length()) {
+        if (text.isEmpty()) {
             return false;
         }
 
@@ -228,7 +228,7 @@ public class SQLTextAreaServices {
     public boolean hasSelection() {
         String sql = _sqlTextAreaVirtualScroll.getContent().getSelectedText();
 
-        return false == Utils.isEmptyString(sql);
+        return !Utils.isEmptyString(sql);
     }
 
 
@@ -259,7 +259,7 @@ public class SQLTextAreaServices {
 
 
         int begin = caretPosition - 1;
-        while (0 < begin && false == tokenDelimiterCheck.isTokenDelimiter(sqlTextAreaText.charAt(begin))) {
+        while (0 < begin && !tokenDelimiterCheck.isTokenDelimiter(sqlTextAreaText.charAt(begin))) {
             --begin;
         }
 
@@ -268,7 +268,7 @@ public class SQLTextAreaServices {
         }
 
         int end = caretPosition;
-        while (sqlTextAreaText.length() - 1 >= end && false == tokenDelimiterCheck.isTokenDelimiter(sqlTextAreaText.charAt(end))) {
+        while (sqlTextAreaText.length() - 1 >= end && !tokenDelimiterCheck.isTokenDelimiter(sqlTextAreaText.charAt(end))) {
             ++end;
         }
 
